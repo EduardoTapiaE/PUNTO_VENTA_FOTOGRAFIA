@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Punto_de_venta.Controladores;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace Punto_de_venta.Vistas
 {
     public partial class FrmMenuPrincipal : Form
     {
+        UsuarioController ctlerUsuario = new UsuarioController();
         private Form formularioActual = null;
 
         public FrmMenuPrincipal()
@@ -47,6 +49,7 @@ namespace Punto_de_venta.Vistas
         }
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
         {
+            LblUsuario.Text = "Usuario: " + UsuarioController.usuarioActual;
             OcultarSubMenus();
         }
         private void FrmMenuPrincipal_FormClosed(object sender, FormClosedEventArgs e)

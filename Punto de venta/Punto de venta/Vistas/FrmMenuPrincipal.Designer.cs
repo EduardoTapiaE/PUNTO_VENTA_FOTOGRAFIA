@@ -38,8 +38,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlAbrirFormularios = new System.Windows.Forms.Panel();
+            this.LblUsuario = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.PnlSubMenuAdministrar.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -165,6 +167,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.panel2.Controls.Add(this.LblUsuario);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(171, 0);
             this.panel2.Name = "panel2";
@@ -179,6 +182,16 @@
             this.pnlAbrirFormularios.Name = "pnlAbrirFormularios";
             this.pnlAbrirFormularios.Size = new System.Drawing.Size(875, 607);
             this.pnlAbrirFormularios.TabIndex = 2;
+            // 
+            // LblUsuario
+            // 
+            this.LblUsuario.AutoSize = true;
+            this.LblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuario.Location = new System.Drawing.Point(6, 9);
+            this.LblUsuario.Name = "LblUsuario";
+            this.LblUsuario.Size = new System.Drawing.Size(77, 18);
+            this.LblUsuario.TabIndex = 3;
+            this.LblUsuario.Text = "Usuario: ";
             // 
             // FrmMenuPrincipal
             // 
@@ -196,6 +209,8 @@
             this.Load += new System.EventHandler(this.FrmMenuPrincipal_Load);
             this.panel1.ResumeLayout(false);
             this.PnlSubMenuAdministrar.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -212,5 +227,6 @@
         private System.Windows.Forms.Button BtnUsuarios;
         private System.Windows.Forms.Button BtnAdministrar;
         private System.Windows.Forms.Button BtnVenta;
+        private System.Windows.Forms.Label LblUsuario;
     }
 }

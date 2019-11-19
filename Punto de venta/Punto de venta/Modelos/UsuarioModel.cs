@@ -60,5 +60,25 @@ namespace Punto_de_venta.Modelos
             }
            
         }
+        public List<Usuario> DatosTablaUsuario()
+        {
+            try
+            {
+                List<Usuario> _datosreturn = new List<Usuario>();
+
+                sqlcon.Open();
+                string query = "SELECT idusuario,nombres,apellidos,nombreusuario,contraseña,tipousuario FROM usuarios;";
+                _datosreturn = sqlcon.Query<Usuario>(query, commandType: CommandType.Text).ToList();
+                sqlcon.Close();
+
+                return _datosreturn;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para solicitar los datos del usurio\n" + ex.Message);
+            }
+
+        }
     }
 }

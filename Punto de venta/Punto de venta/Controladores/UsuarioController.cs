@@ -9,15 +9,27 @@ namespace Punto_de_venta.Controladores
 {
     class UsuarioController
     {
+        public static string usuarioActual = "";
         UsuarioModel modelUsuario = new UsuarioModel();
 
         public void ValidarAccesoDeUsuario(string usuario, string contraseña)
         {
             List<Usuario> _datosdeusuario = modelUsuario.DatosTablaUsuarioPorUsuarioYContrseña(usuario, contraseña);
-            if (_datosdeusuario.Count < 1)
+            if (_datosdeusuario.Count > 0)
+            {
+                usuarioActual = _datosdeusuario[0].nombreusuario;
+            }
+            else
             {
                 throw new Exception("Usuario y/o contraseña incorrectos");
             }
+        }
+
+        public List<Usuario> GetTablaUsuarios()
+        {
+            List<Usuario> _datosreturn = modelUsuario.DatosTablaUsuario();
+
+            return _datosreturn;
         }
 
     }
