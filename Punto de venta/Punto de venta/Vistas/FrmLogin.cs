@@ -1,4 +1,5 @@
 ﻿using Punto_de_venta.Controladores;
+using Punto_de_venta.Vistas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,9 @@ namespace Punto_de_venta
                 string _usuario = TxtUsuario.Text,
                   _contraseña = TxtContraseña.Text;
                 ctlerUsuario.ValidarAccesoDeUsuario(_usuario, _contraseña);
-                MessageBox.Show("Bienvenidos");
+                MessageBox.Show("Bienvenidos viejon");
+                FrmMenuPrincipal _form = new FrmMenuPrincipal();
+                _form.Show();
             }
             catch (Exception ex)
             {
