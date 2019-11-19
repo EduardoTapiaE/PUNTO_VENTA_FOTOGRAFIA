@@ -72,5 +72,19 @@ namespace Punto_de_venta.Vistas
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ctlerUsuario.AgregarUsuario(TxtNombres.Text, TxtApellidos.Text, TxtUsuario.Text, TxtContraseña.Text, CmbNivelDeUsuario.SelectedValue.ToString());
+                MessageBox.Show("Usuario agregado");
+                ActualizarDgvUsuarios();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

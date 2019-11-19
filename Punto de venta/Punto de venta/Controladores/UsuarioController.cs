@@ -12,6 +12,23 @@ namespace Punto_de_venta.Controladores
         public static string usuarioActual = "";
         UsuarioModel modelUsuario = new UsuarioModel();
 
+        public void AgregarUsuario(string nombres, string apellidos, string usuario, string contraseña, string tipodeusuario)
+        {
+            Usuario _nuevousuario = new Usuario()
+            {
+                nombres = nombres,
+                apellidos = apellidos,
+                nombreusuario = usuario,
+                contraseña = contraseña,
+                tipousuario = tipodeusuario
+            };
+
+            if (modelUsuario.NuevoUsuario(_nuevousuario) < 1)
+            {
+                throw new Exception("Error: No se pudo agregar al usuario");
+            }
+        }
+
         public void ValidarAccesoDeUsuario(string usuario, string contraseña)
         {
             List<Usuario> _datosdeusuario = modelUsuario.DatosTablaUsuarioPorUsuarioYContrseña(usuario, contraseña);

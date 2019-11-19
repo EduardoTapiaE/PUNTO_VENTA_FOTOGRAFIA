@@ -40,5 +40,6 @@ namespace Punto_de_venta.Controladores
 
             return _datosreturn;
         }
+
     }
 }

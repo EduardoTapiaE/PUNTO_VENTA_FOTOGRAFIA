@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Punto_de_venta.Modelos
 {
-    class TipoUsuario
+    public class TipoUsuario
     {
         public string idtipousuario { get; set; }
         public string tipo { get; set; }

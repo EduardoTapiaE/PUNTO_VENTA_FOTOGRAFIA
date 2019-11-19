@@ -39,7 +39,22 @@ namespace Punto_de_venta.Modelos
             }
         }
 
-
+        public int NuevoUsuario(Usuario usuarionuevo)
+        {
+            try
+            {
+                sqlcon.Open();
+                //int _filasafectadas = sqlcon.Execute("Insert into Student (Name, Marks) values (@Name, @Marks)", new { Name = student.Name, Marks = student.Marks });
+                int _filasafectadas = sqlcon.Execute("INSERT INTO usuarios (nombres, apellidos, nombreusuario,contraseña,tipousuario)VALUES(@nombres,@apellidos,@nombreusuario,@contraseña,@tipousuario);", new { nombres = usuarionuevo.nombres, apellidos = usuarionuevo.apellidos, nombreusuario = usuarionuevo.nombreusuario, contraseña = usuarionuevo.contraseña, tipousuario = usuarionuevo.tipousuario });
+                sqlcon.Close();
+                return _filasafectadas;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para agregar nuevo usuario\n" + ex.Message);
+            }
+        }
         public List<Usuario> DatosTablaUsuarioPorUsuarioYContrseña(string usuario, string contraseña)
         {
             try
