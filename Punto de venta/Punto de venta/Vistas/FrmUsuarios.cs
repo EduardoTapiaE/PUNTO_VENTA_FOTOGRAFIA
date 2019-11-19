@@ -14,7 +14,7 @@ namespace Punto_de_venta.Vistas
     public partial class FrmUsuarios : Form
     {
         UsuarioController ctlerUsuario = new UsuarioController();
-
+        TipoUsuarioController ctlerTipoUsuario = new TipoUsuarioController();
         public FrmUsuarios()
         {
             InitializeComponent();
@@ -25,8 +25,8 @@ namespace Punto_de_venta.Vistas
             try
             {
                 ActualizarDgvUsuarios();
+                LlenarCmbNivelDelUsuario();
                 BtnNuevo.Select();
-                //LlenarCmbNivelDelUsuario();
             }
             catch (Exception ex)
             {
@@ -41,7 +41,12 @@ namespace Punto_de_venta.Vistas
 
         private void LlenarCmbNivelDelUsuario()
         {
-            throw new NotImplementedException();
+            DataTable _TablaTiposDeUsuarios =  ctlerTipoUsuario.GetTablaTiposDeUsuariosEnFormatoDataTable();
+            CmbNivelDeUsuario.ValueMember = "Id";
+            CmbNivelDeUsuario.DisplayMember = "Tipo usuario";
+            CmbNivelDeUsuario.DataSource = _TablaTiposDeUsuarios;
+            CmbNivelDeUsuario.Text = "";
+            CmbNivelDeUsuario.SelectedValue = "-1";
         }
 
         private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)

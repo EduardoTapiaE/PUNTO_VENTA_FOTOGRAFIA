@@ -72,7 +72,7 @@
             // BtnAceptar
             // 
             this.BtnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(113)))), ((int)(((byte)(67)))));
-            this.BtnAceptar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnAceptar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.BtnAceptar.ForeColor = System.Drawing.Color.White;

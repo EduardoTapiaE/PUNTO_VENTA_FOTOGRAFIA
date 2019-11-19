@@ -49,7 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\TipoUsuarioController.cs" />
     <Compile Include="Controladores\UsuarioController.cs" />
+    <Compile Include="Modelos\TipoUsuarioModel.cs" />
     <Compile Include="Modelos\UsuarioModel.cs" />
     <Compile Include="Vistas\FrmCotizacion.cs">
       <SubType>Form</SubType>
