@@ -13,6 +13,7 @@ namespace Punto_de_venta.Vistas
     public partial class FrmMenuPrincipal : Form
     {
         private Form formularioActual = null;
+
         public FrmMenuPrincipal()
         {
             InitializeComponent();
@@ -44,12 +45,16 @@ namespace Punto_de_venta.Vistas
         {
             PnlSubMenuAdministrar.Visible = false;
         }
-
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
         {
             OcultarSubMenus();
         }
+        private void FrmMenuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
 
+        #region BUTTON
         private void BtnCotizacion_Click(object sender, EventArgs e)
         {
             try
@@ -62,20 +67,46 @@ namespace Punto_de_venta.Vistas
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void BtnAdministrar_Click(object sender, EventArgs e)
         {
             MostrarSubMenu(PnlSubMenuAdministrar);
         }
-
         private void BtnVenta_Click(object sender, EventArgs e)
         {
-            OcultarSubMenus();
+            try
+            {
+                OcultarSubMenus();
+                AbrirFormulario(new FrmVenta());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-
-        private void FrmMenuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        private void BtnUsuarios_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            try
+            {
+                OcultarSubMenus();
+                AbrirFormulario(new FrmUsuarios());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+        private void BtnPaquetes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OcultarSubMenus();
+                AbrirFormulario(new FrmPaquetes());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
     }
 }

@@ -61,5 +61,10 @@ namespace Punto_de_venta
         {
             Application.Exit();
         }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            TxtUsuario.Select();
+        }
     }
 }

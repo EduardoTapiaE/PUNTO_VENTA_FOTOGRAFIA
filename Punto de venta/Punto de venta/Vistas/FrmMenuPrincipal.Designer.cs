@@ -83,6 +83,7 @@
             this.BtnPaquetes.TabIndex = 19;
             this.BtnPaquetes.Text = "Paquetes";
             this.BtnPaquetes.UseVisualStyleBackColor = false;
+            this.BtnPaquetes.Click += new System.EventHandler(this.BtnPaquetes_Click);
             // 
             // BtnUsuarios
             // 
@@ -99,6 +100,7 @@
             this.BtnUsuarios.TabIndex = 18;
             this.BtnUsuarios.Text = "Usuarios";
             this.BtnUsuarios.UseVisualStyleBackColor = false;
+            this.BtnUsuarios.Click += new System.EventHandler(this.BtnUsuarios_Click);
             // 
             // BtnAdministrar
             // 
