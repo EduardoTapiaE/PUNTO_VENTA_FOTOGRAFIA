@@ -72,5 +72,10 @@ namespace Punto_de_venta.Vistas
         {
             OcultarSubMenus();
         }
+
+        private void FrmMenuPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

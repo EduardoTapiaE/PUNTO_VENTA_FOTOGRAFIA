@@ -31,6 +31,7 @@ namespace Punto_de_venta
                 MessageBox.Show("Bienvenidos viejon");
                 FrmMenuPrincipal _form = new FrmMenuPrincipal();
                 _form.Show();
+                Hide();
             }
             catch (Exception ex)
             {
@@ -56,5 +57,9 @@ namespace Punto_de_venta
         }
         #endregion
 
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
