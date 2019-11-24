@@ -37,8 +37,8 @@
             this.BtnCotizacion = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pnlAbrirFormularios = new System.Windows.Forms.Panel();
             this.LblUsuario = new System.Windows.Forms.Label();
+            this.pnlAbrirFormularios = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.PnlSubMenuAdministrar.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -174,15 +174,6 @@
             this.panel2.Size = new System.Drawing.Size(875, 36);
             this.panel2.TabIndex = 1;
             // 
-            // pnlAbrirFormularios
-            // 
-            this.pnlAbrirFormularios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.pnlAbrirFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlAbrirFormularios.Location = new System.Drawing.Point(171, 36);
-            this.pnlAbrirFormularios.Name = "pnlAbrirFormularios";
-            this.pnlAbrirFormularios.Size = new System.Drawing.Size(875, 607);
-            this.pnlAbrirFormularios.TabIndex = 2;
-            // 
             // LblUsuario
             // 
             this.LblUsuario.AutoSize = true;
@@ -192,6 +183,15 @@
             this.LblUsuario.Size = new System.Drawing.Size(77, 18);
             this.LblUsuario.TabIndex = 3;
             this.LblUsuario.Text = "Usuario: ";
+            // 
+            // pnlAbrirFormularios
+            // 
+            this.pnlAbrirFormularios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.pnlAbrirFormularios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlAbrirFormularios.Location = new System.Drawing.Point(171, 36);
+            this.pnlAbrirFormularios.Name = "pnlAbrirFormularios";
+            this.pnlAbrirFormularios.Size = new System.Drawing.Size(875, 607);
+            this.pnlAbrirFormularios.TabIndex = 2;
             // 
             // FrmMenuPrincipal
             // 
