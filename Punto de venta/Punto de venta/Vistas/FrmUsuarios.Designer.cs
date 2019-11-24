@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LblTitulo = new System.Windows.Forms.Label();
             this.DgvUsuarios = new System.Windows.Forms.DataGridView();
             this.PnlDatosDelUsuario = new System.Windows.Forms.Panel();
+            this.CmbNivelDeUsuario = new System.Windows.Forms.ComboBox();
+            this.LblNivelDeUsuario = new System.Windows.Forms.Label();
+            this.LblContraseña = new System.Windows.Forms.Label();
+            this.TxtContraseña = new System.Windows.Forms.TextBox();
+            this.LblUsuario = new System.Windows.Forms.Label();
+            this.TxtUsuario = new System.Windows.Forms.TextBox();
             this.LblApellidos = new System.Windows.Forms.Label();
             this.TxtApellidos = new System.Windows.Forms.TextBox();
             this.LblNombres = new System.Windows.Forms.Label();
@@ -40,25 +45,9 @@
             this.BtnModificar = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.LblDatosDelUsuario = new System.Windows.Forms.Label();
-            this.LblContraseña = new System.Windows.Forms.Label();
-            this.TxtContraseña = new System.Windows.Forms.TextBox();
-            this.LblUsuario = new System.Windows.Forms.Label();
-            this.TxtUsuario = new System.Windows.Forms.TextBox();
-            this.LblNivelDeUsuario = new System.Windows.Forms.Label();
-            this.CmbNivelDeUsuario = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvUsuarios)).BeginInit();
             this.PnlDatosDelUsuario.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // LblTitulo
-            // 
-            this.LblTitulo.AutoSize = true;
-            this.LblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitulo.Location = new System.Drawing.Point(366, 9);
-            this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(128, 25);
-            this.LblTitulo.TabIndex = 2;
-            this.LblTitulo.Text = "USUARIOS";
             // 
             // DgvUsuarios
             // 
@@ -87,6 +76,64 @@
             this.PnlDatosDelUsuario.Name = "PnlDatosDelUsuario";
             this.PnlDatosDelUsuario.Size = new System.Drawing.Size(768, 152);
             this.PnlDatosDelUsuario.TabIndex = 4;
+            // 
+            // CmbNivelDeUsuario
+            // 
+            this.CmbNivelDeUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbNivelDeUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.CmbNivelDeUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.CmbNivelDeUsuario.FormattingEnabled = true;
+            this.CmbNivelDeUsuario.Location = new System.Drawing.Point(106, 113);
+            this.CmbNivelDeUsuario.Name = "CmbNivelDeUsuario";
+            this.CmbNivelDeUsuario.Size = new System.Drawing.Size(251, 24);
+            this.CmbNivelDeUsuario.TabIndex = 4;
+            // 
+            // LblNivelDeUsuario
+            // 
+            this.LblNivelDeUsuario.AutoSize = true;
+            this.LblNivelDeUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNivelDeUsuario.Location = new System.Drawing.Point(40, 116);
+            this.LblNivelDeUsuario.Name = "LblNivelDeUsuario";
+            this.LblNivelDeUsuario.Size = new System.Drawing.Size(44, 16);
+            this.LblNivelDeUsuario.TabIndex = 30;
+            this.LblNivelDeUsuario.Text = "Nivel";
+            // 
+            // LblContraseña
+            // 
+            this.LblContraseña.AutoSize = true;
+            this.LblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblContraseña.Location = new System.Drawing.Point(369, 79);
+            this.LblContraseña.Name = "LblContraseña";
+            this.LblContraseña.Size = new System.Drawing.Size(87, 16);
+            this.LblContraseña.TabIndex = 29;
+            this.LblContraseña.Text = "Contraseña";
+            // 
+            // TxtContraseña
+            // 
+            this.TxtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtContraseña.Location = new System.Drawing.Point(462, 76);
+            this.TxtContraseña.Name = "TxtContraseña";
+            this.TxtContraseña.Size = new System.Drawing.Size(274, 22);
+            this.TxtContraseña.TabIndex = 3;
+            this.TxtContraseña.UseSystemPasswordChar = true;
+            // 
+            // LblUsuario
+            // 
+            this.LblUsuario.AutoSize = true;
+            this.LblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUsuario.Location = new System.Drawing.Point(32, 79);
+            this.LblUsuario.Name = "LblUsuario";
+            this.LblUsuario.Size = new System.Drawing.Size(62, 16);
+            this.LblUsuario.TabIndex = 27;
+            this.LblUsuario.Text = "Usuario";
+            // 
+            // TxtUsuario
+            // 
+            this.TxtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUsuario.Location = new System.Drawing.Point(107, 76);
+            this.TxtUsuario.Name = "TxtUsuario";
+            this.TxtUsuario.Size = new System.Drawing.Size(250, 22);
+            this.TxtUsuario.TabIndex = 2;
             // 
             // LblApellidos
             // 
@@ -197,64 +244,6 @@
             this.LblDatosDelUsuario.TabIndex = 21;
             this.LblDatosDelUsuario.Text = "Datos del usuario";
             // 
-            // LblContraseña
-            // 
-            this.LblContraseña.AutoSize = true;
-            this.LblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblContraseña.Location = new System.Drawing.Point(369, 79);
-            this.LblContraseña.Name = "LblContraseña";
-            this.LblContraseña.Size = new System.Drawing.Size(87, 16);
-            this.LblContraseña.TabIndex = 29;
-            this.LblContraseña.Text = "Contraseña";
-            // 
-            // TxtContraseña
-            // 
-            this.TxtContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtContraseña.Location = new System.Drawing.Point(462, 76);
-            this.TxtContraseña.Name = "TxtContraseña";
-            this.TxtContraseña.Size = new System.Drawing.Size(274, 22);
-            this.TxtContraseña.TabIndex = 3;
-            this.TxtContraseña.UseSystemPasswordChar = true;
-            // 
-            // LblUsuario
-            // 
-            this.LblUsuario.AutoSize = true;
-            this.LblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblUsuario.Location = new System.Drawing.Point(32, 79);
-            this.LblUsuario.Name = "LblUsuario";
-            this.LblUsuario.Size = new System.Drawing.Size(62, 16);
-            this.LblUsuario.TabIndex = 27;
-            this.LblUsuario.Text = "Usuario";
-            // 
-            // TxtUsuario
-            // 
-            this.TxtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsuario.Location = new System.Drawing.Point(107, 76);
-            this.TxtUsuario.Name = "TxtUsuario";
-            this.TxtUsuario.Size = new System.Drawing.Size(250, 22);
-            this.TxtUsuario.TabIndex = 2;
-            // 
-            // LblNivelDeUsuario
-            // 
-            this.LblNivelDeUsuario.AutoSize = true;
-            this.LblNivelDeUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNivelDeUsuario.Location = new System.Drawing.Point(40, 116);
-            this.LblNivelDeUsuario.Name = "LblNivelDeUsuario";
-            this.LblNivelDeUsuario.Size = new System.Drawing.Size(44, 16);
-            this.LblNivelDeUsuario.TabIndex = 30;
-            this.LblNivelDeUsuario.Text = "Nivel";
-            // 
-            // CmbNivelDeUsuario
-            // 
-            this.CmbNivelDeUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbNivelDeUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CmbNivelDeUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.CmbNivelDeUsuario.FormattingEnabled = true;
-            this.CmbNivelDeUsuario.Location = new System.Drawing.Point(106, 113);
-            this.CmbNivelDeUsuario.Name = "CmbNivelDeUsuario";
-            this.CmbNivelDeUsuario.Size = new System.Drawing.Size(251, 24);
-            this.CmbNivelDeUsuario.TabIndex = 4;
-            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,7 +257,6 @@
             this.Controls.Add(this.BtnNuevo);
             this.Controls.Add(this.PnlDatosDelUsuario);
             this.Controls.Add(this.DgvUsuarios);
-            this.Controls.Add(this.LblTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmUsuarios";
             this.Text = "FrmUsuarios";
@@ -282,8 +270,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label LblTitulo;
         private System.Windows.Forms.DataGridView DgvUsuarios;
         private System.Windows.Forms.Panel PnlDatosDelUsuario;
         private System.Windows.Forms.Button BtnNuevo;

@@ -39,6 +39,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblUsuario = new System.Windows.Forms.Label();
             this.pnlAbrirFormularios = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.PnlSubMenuAdministrar.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -167,6 +168,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.panel2.Controls.Add(this.LblTitulo);
             this.panel2.Controls.Add(this.LblUsuario);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(171, 0);
@@ -192,6 +194,16 @@
             this.pnlAbrirFormularios.Name = "pnlAbrirFormularios";
             this.pnlAbrirFormularios.Size = new System.Drawing.Size(875, 607);
             this.pnlAbrirFormularios.TabIndex = 2;
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.AutoSize = true;
+            this.LblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.Location = new System.Drawing.Point(373, 6);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(149, 25);
+            this.LblTitulo.TabIndex = 4;
+            this.LblTitulo.Text = "BIENVENIDO";
             // 
             // FrmMenuPrincipal
             // 
@@ -228,5 +240,6 @@
         private System.Windows.Forms.Button BtnAdministrar;
         private System.Windows.Forms.Button BtnVenta;
         private System.Windows.Forms.Label LblUsuario;
+        private System.Windows.Forms.Label LblTitulo;
     }
 }

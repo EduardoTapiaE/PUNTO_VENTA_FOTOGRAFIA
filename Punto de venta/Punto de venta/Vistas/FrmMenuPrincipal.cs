@@ -64,6 +64,7 @@ namespace Punto_de_venta.Vistas
             {
                 OcultarSubMenus();
                 AbrirFormulario(new FrmCotizacion());
+                LblTitulo.Text = "COTIZACION";
             }
             catch (Exception ex)
             {
@@ -80,6 +81,7 @@ namespace Punto_de_venta.Vistas
             {
                 OcultarSubMenus();
                 AbrirFormulario(new FrmVenta());
+                LblTitulo.Text = "VENTA";
             }
             catch (Exception ex)
             {
@@ -92,6 +94,7 @@ namespace Punto_de_venta.Vistas
             {
                 OcultarSubMenus();
                 AbrirFormulario(new FrmUsuarios());
+                LblTitulo.Text = "USUARIOS";
             }
             catch (Exception ex)
             {
@@ -104,6 +107,7 @@ namespace Punto_de_venta.Vistas
             {
                 OcultarSubMenus();
                 AbrirFormulario(new FrmPaquetes());
+                LblTitulo.Text = "PAQUETES";
             }
             catch (Exception ex)
             {
