@@ -21,7 +21,11 @@ namespace Punto_de_venta.Vistas
             InitializeComponent();
         }
 
-        private void AbrirFormulario(Form form)
+        public void CambiarNombreTitulo(string titulo)
+        {
+            LblTitulo.Text = titulo;
+        }
+        public void AbrirFormulario(Form form)
         {
             if (formularioActual != null)
             {

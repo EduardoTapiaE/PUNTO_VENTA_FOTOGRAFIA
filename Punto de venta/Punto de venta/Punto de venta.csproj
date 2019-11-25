@@ -57,6 +57,7 @@
     <Compile Include="Controladores\ServicioController.cs" />
     <Compile Include="Controladores\TipoUsuarioController.cs" />
     <Compile Include="Controladores\UsuarioController.cs" />
+    <Compile Include="Modelos\CotizacionModel.cs" />
     <Compile Include="Modelos\PaqueteModel.cs" />
     <Compile Include="Modelos\ServicioModel.cs" />
     <Compile Include="Modelos\TipoUsuarioModel.cs" />

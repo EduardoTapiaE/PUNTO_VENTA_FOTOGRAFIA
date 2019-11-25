@@ -34,6 +34,22 @@ namespace Punto_de_venta.Modelos
             }
         }
 
+        public int NuevoServicioACotizacion(string idservicio,string idcotizacion, string cantidad)
+        {
+            try
+            {
+                sqlcon.Open();
+                int _filasafectadas = sqlcon.Execute("INSERT INTO paquetedecotizacion(idservicio,idcotizacion,cantidad)VALUES(@idservicio,@idcotizacion,@cantidad);", new { idservicio = idservicio , idcotizacion = idcotizacion, cantidad = cantidad });
+                sqlcon.Close();
+                return _filasafectadas;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para agregar nuevo servicio a cotizacion\n" + ex.Message);
+            }
+        }
+
         public List<Servicio> DatosTablaServiciosParaPaquetesPredefinidos(string idpaquete)
         {
             try

@@ -10,6 +10,15 @@ namespace Punto_de_venta.Controladores
 {
     class ServicioController
     {
+        ServicioModel modelServicio = new ServicioModel();
+        public void AgregarServiciosACotizacion(List<Servicio> servicios, string idcotizacion)
+        {
+            foreach (Servicio _servicio in servicios)
+            {
+                modelServicio.NuevoServicioACotizacion(_servicio.idservicio, idcotizacion, _servicio.cantidad);
+            }
+        }
+
         public DataTable ConvertirListaDeServiciosAFormatoDataTable(List<Servicio> listadeservicios)
         {
             DataTable _datosreturn = new DataTable();
@@ -33,15 +42,6 @@ namespace Punto_de_venta.Controladores
                 _datosreturn.Rows.Add(fila);
             }
             return _datosreturn;
-
-            /*
-             *  public string idservicio { get; set; }
-        public string nombre { get; set; }
-        public string detalles { get; set; }
-        public string costo { get; set; }
-        public string unitario { get; set; }
-        public string cantidad { get; set; }
-             */
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Punto_de_venta.Vistas
         CotizacionController ctlerCotizacion = new CotizacionController();
         PaqueteController ctlerPaquete = new PaqueteController();
         ServicioController ctlerServicio = new ServicioController();
-        DataTable serviciosDelPaquete = new DataTable();
+        List<Modelos.Servicio> serviciosDelPaquete = new List<Modelos.Servicio>();
         public FrmCotizacion()
         {
             InitializeComponent();
@@ -75,8 +75,8 @@ namespace Punto_de_venta.Vistas
                     string _idpaquete = CmbPaquetesPredefinidos.SelectedValue.ToString();
                     var _paquete = ctlerPaquete.GetPaquetePredefinidoPorId(_idpaquete);
                     RtxDetallesPaquetePre.Text = _paquete.detalles;
-                    serviciosDelPaquete = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(_paquete.servicios);
-                    DgvServiciosDelPaquete.DataSource = serviciosDelPaquete;
+                    serviciosDelPaquete = _paquete.servicios;
+                    DgvServiciosDelPaquete.DataSource = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
 
                 }
             }
@@ -122,10 +122,11 @@ namespace Punto_de_venta.Vistas
                 {
                     if (CmbPaquetesPredefinidos.SelectedValue != null)
                     {
-                        if (serviciosDelPaquete.Rows.Count > 0)
+                        DataTable _serviciosdelpaquete = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
+                        if (_serviciosdelpaquete.Rows.Count > 0)
                         {
                             double _cotizacion = 0;
-                            foreach (DataRow dr in serviciosDelPaquete.Rows)
+                            foreach (DataRow dr in _serviciosdelpaquete.Rows)
                             {
                                 if (dr["Unitario"].ToString() == "0")
                                 {
@@ -164,7 +165,42 @@ namespace Punto_de_venta.Vistas
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (PnlPaquetePredefinido.Visible)
+                {
+                    if (TxtCotizacion.Text != "")
+                    {
+                        ctlerCotizacion.AgregarCotizacion(TxtCotizacion.Text, serviciosDelPaquete);
+                        MessageBox.Show("Datos agregados");
+                        LimpiarCampos();
+                        DialogResult _respuesta = MessageBox.Show("¿Desea realizar venta de la cotizacion?","Venta",MessageBoxButtons.YesNo);
+                        if (_respuesta == DialogResult.Yes)
+                        {
+                            FrmMenuPrincipal _formularioabierto = Application.OpenForms.OfType<FrmMenuPrincipal>().Where(pre => pre.Name == "FrmMenuPrincipal").SingleOrDefault();
+                            if (_formularioabierto != null)
+                            {
+                                _formularioabierto.AbrirFormulario(new FrmVenta());
+                                _formularioabierto.CambiarNombreTitulo("VENTA");
+                            }
+                        }
+                    }
+                   
+                }
+                else if (PnlPaquetePersonalizado.Visible)
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private void LimpiarCampos()
+        {
+            CmbPaquetesPredefinidos.SelectedIndex = -1;
         }
     }
 }
