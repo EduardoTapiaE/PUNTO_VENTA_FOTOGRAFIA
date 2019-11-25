@@ -146,6 +146,7 @@
             this.Controls.Add(this.LblUsuario);
             this.Controls.Add(this.PnlUsuario);
             this.Controls.Add(this.BtnAceptar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Iniciar Sesion";

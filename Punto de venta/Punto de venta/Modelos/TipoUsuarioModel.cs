@@ -18,9 +18,6 @@ namespace Punto_de_venta.Modelos
     class TipoUsuarioModel
     {
         SqlConnection sqlcon;
-        SqlCommand sqlcmd;
-        SqlDataAdapter sqlad;
-        DataSet sqlds;
 
         public TipoUsuarioModel()
         {

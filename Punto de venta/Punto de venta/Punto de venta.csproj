@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icocamara.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
@@ -49,8 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\CotizacionController.cs" />
+    <Compile Include="Controladores\PaqueteController.cs" />
+    <Compile Include="Controladores\ServicioController.cs" />
     <Compile Include="Controladores\TipoUsuarioController.cs" />
     <Compile Include="Controladores\UsuarioController.cs" />
+    <Compile Include="Modelos\PaqueteModel.cs" />
+    <Compile Include="Modelos\ServicioModel.cs" />
     <Compile Include="Modelos\TipoUsuarioModel.cs" />
     <Compile Include="Modelos\UsuarioModel.cs" />
     <Compile Include="Vistas\FrmCotizacion.cs">
@@ -131,6 +139,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icocamara.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

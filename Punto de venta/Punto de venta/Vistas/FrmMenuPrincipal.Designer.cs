@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
             this.PnlSubMenuAdministrar = new System.Windows.Forms.Panel();
             this.BtnPaquetes = new System.Windows.Forms.Button();
@@ -37,9 +38,9 @@
             this.BtnCotizacion = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.LblUsuario = new System.Windows.Forms.Label();
             this.pnlAbrirFormularios = new System.Windows.Forms.Panel();
-            this.LblTitulo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.PnlSubMenuAdministrar.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -176,6 +177,16 @@
             this.panel2.Size = new System.Drawing.Size(875, 36);
             this.panel2.TabIndex = 1;
             // 
+            // LblTitulo
+            // 
+            this.LblTitulo.AutoSize = true;
+            this.LblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.Location = new System.Drawing.Point(373, 6);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(149, 25);
+            this.LblTitulo.TabIndex = 4;
+            this.LblTitulo.Text = "BIENVENIDO";
+            // 
             // LblUsuario
             // 
             this.LblUsuario.AutoSize = true;
@@ -195,16 +206,6 @@
             this.pnlAbrirFormularios.Size = new System.Drawing.Size(875, 607);
             this.pnlAbrirFormularios.TabIndex = 2;
             // 
-            // LblTitulo
-            // 
-            this.LblTitulo.AutoSize = true;
-            this.LblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitulo.Location = new System.Drawing.Point(373, 6);
-            this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(149, 25);
-            this.LblTitulo.TabIndex = 4;
-            this.LblTitulo.Text = "BIENVENIDO";
-            // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +215,7 @@
             this.Controls.Add(this.pnlAbrirFormularios);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fotografia y video";
