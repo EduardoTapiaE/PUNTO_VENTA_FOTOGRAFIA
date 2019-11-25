@@ -171,7 +171,7 @@ namespace Punto_de_venta.Vistas
                 {
                     if (TxtCotizacion.Text != "")
                     {
-                        ctlerCotizacion.AgregarCotizacion(TxtCotizacion.Text, serviciosDelPaquete);
+                        string _id = ctlerCotizacion.AgregarCotizacion(TxtCotizacion.Text, serviciosDelPaquete);
                         MessageBox.Show("Datos agregados");
                         LimpiarCampos();
                         DialogResult _respuesta = MessageBox.Show("¿Desea realizar venta de la cotizacion?","Venta",MessageBoxButtons.YesNo);
@@ -180,7 +180,7 @@ namespace Punto_de_venta.Vistas
                             FrmMenuPrincipal _formularioabierto = Application.OpenForms.OfType<FrmMenuPrincipal>().Where(pre => pre.Name == "FrmMenuPrincipal").SingleOrDefault();
                             if (_formularioabierto != null)
                             {
-                                _formularioabierto.AbrirFormulario(new FrmVenta());
+                                _formularioabierto.AbrirFormulario(new FrmVenta(_id));
                                 _formularioabierto.CambiarNombreTitulo("VENTA");
                             }
                         }

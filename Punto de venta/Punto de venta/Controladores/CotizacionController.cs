@@ -34,5 +34,33 @@ namespace Punto_de_venta.Controladores
 
             return _idcotizacion;
         }
+        public List<Cotizacion> GetTablaCotizaciones()
+        {
+            List<Cotizacion> _datosreturn = modelCotizacion.DatosTablaCotizaciones();
+            return _datosreturn;
+        }
+        public DataTable ConvertirListaDeCotizacionesAFormatoDataTable(List<Cotizacion> listadecotizaciones)
+        {
+            DataTable _datosreturn = new DataTable();
+            _datosreturn.Columns.Add("Id");
+            _datosreturn.Columns.Add("Id usuario");
+            _datosreturn.Columns.Add("Fecha");
+            _datosreturn.Columns.Add("Hora");
+            _datosreturn.Columns.Add("Importe");
+            _datosreturn.Columns.Add("Activo");
+
+            foreach (Cotizacion _cotizacion in listadecotizaciones)
+            {
+                DataRow fila = _datosreturn.NewRow();
+                fila["Id"] = _cotizacion.idcotizacion;
+                fila["Id usuario"] = _cotizacion.idusuario;
+                fila["Fecha"] = _cotizacion.fecha;
+                fila["Importe"] = _cotizacion.importe;
+                fila["Activo"] = _cotizacion.activo;
+
+                _datosreturn.Rows.Add(fila);
+            }
+            return _datosreturn;
+        }
     }
 }

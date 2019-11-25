@@ -259,6 +259,7 @@
             this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.richTextBox2.Location = new System.Drawing.Point(3, 11);
             this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
             this.richTextBox2.Size = new System.Drawing.Size(750, 51);
             this.richTextBox2.TabIndex = 26;
             this.richTextBox2.Text = "";
@@ -344,6 +345,7 @@
             this.RtxDetallesPaquetePre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RtxDetallesPaquetePre.Location = new System.Drawing.Point(3, 11);
             this.RtxDetallesPaquetePre.Name = "RtxDetallesPaquetePre";
+            this.RtxDetallesPaquetePre.ReadOnly = true;
             this.RtxDetallesPaquetePre.Size = new System.Drawing.Size(750, 51);
             this.RtxDetallesPaquetePre.TabIndex = 26;
             this.RtxDetallesPaquetePre.Text = "";

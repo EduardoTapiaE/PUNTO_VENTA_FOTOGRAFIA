@@ -84,7 +84,7 @@ namespace Punto_de_venta.Vistas
             try
             {
                 OcultarSubMenus();
-                AbrirFormulario(new FrmVenta());
+                AbrirFormulario(new FrmVenta(""));
                 LblTitulo.Text = "VENTA";
             }
             catch (Exception ex)

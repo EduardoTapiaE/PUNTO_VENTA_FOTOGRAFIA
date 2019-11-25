@@ -14,7 +14,7 @@ namespace Punto_de_venta.Modelos
         public string idcotizacion { get; set; }
         public string idusuario { get; set; }
         public string fecha { get; set; }
-        public string hora { get; set; }
+        public string hora { get; set; } 
         public string importe { get; set; }
         public string activo { get; set; }
     }
@@ -52,5 +52,26 @@ namespace Punto_de_venta.Modelos
                 throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para agregar nueva cotizacion\n" + ex.Message);
             }
         }
+        public List<Cotizacion> DatosTablaCotizaciones()
+        {
+            try
+            {
+                List<Cotizacion> _datosreturn = new List<Cotizacion>();
+
+                sqlcon.Open();
+                string query = "SELECT idcotizacion,idusuario,fecha, convert(varchar, hora, 8) AS hora,importe,activo FROM cotizaciones;";
+                _datosreturn = sqlcon.Query<Cotizacion>(query, commandType: CommandType.Text).ToList();
+                sqlcon.Close();
+
+                return _datosreturn;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para solicitar los datos de cotizacion\n" + ex.Message);
+            }
+
+        }
+
     }
 }
