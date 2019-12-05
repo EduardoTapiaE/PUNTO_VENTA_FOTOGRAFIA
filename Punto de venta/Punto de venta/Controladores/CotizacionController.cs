@@ -12,7 +12,8 @@ namespace Punto_de_venta.Controladores
     {
         ServicioController ctlerServicio = new ServicioController();
         CotizacionModel modelCotizacion = new CotizacionModel();
-        public string  AgregarCotizacion(string importe,List<Servicio> servicios)
+        ServicioModel modelServicio = new ServicioModel();
+        public string  AgregarCotizacion(string importe,string nombres,string apellidos,List<Servicio> servicios)
         {
             string _fecha = DateTime.Now.ToString("yyyy-MM-dd"),
                            _hora = DateTime.Now.ToString("hh:mm:ss"),
@@ -23,7 +24,9 @@ namespace Punto_de_venta.Controladores
                 fecha = _fecha,
                 hora = _hora,
                 importe = importe,
-                activo = "1"
+                activo = "1",
+                nombrescliente = nombres,
+                apellidoscliente = apellidos
             };
             string _idcotizacion = modelCotizacion.NuevaCotizacion(_nuevacotizacion);
 
@@ -37,6 +40,19 @@ namespace Punto_de_venta.Controladores
         public List<Cotizacion> GetTablaCotizaciones()
         {
             List<Cotizacion> _datosreturn = modelCotizacion.DatosTablaCotizaciones();
+            return _datosreturn;
+        }
+        public Cotizacion GetCotizacion(string id)
+        {
+            Cotizacion _datosreturn = new Cotizacion();
+            List<Cotizacion> _cotizaciones = modelCotizacion.DatosTablaCotizacionesPorId(id);
+            if(_cotizaciones.Count > 0)
+            {
+                _datosreturn = _cotizaciones[0];
+                List<Servicio> _servidiosdelacotizacion = modelServicio.DatosTablaServiciosParaCotizacionPorId(id);
+                _datosreturn.servicios = _servidiosdelacotizacion;
+            
+            }
             return _datosreturn;
         }
         public DataTable ConvertirListaDeCotizacionesAFormatoDataTable(List<Cotizacion> listadecotizaciones)

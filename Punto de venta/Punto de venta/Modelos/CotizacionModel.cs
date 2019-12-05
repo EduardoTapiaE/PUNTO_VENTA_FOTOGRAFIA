@@ -17,6 +17,10 @@ namespace Punto_de_venta.Modelos
         public string hora { get; set; } 
         public string importe { get; set; }
         public string activo { get; set; }
+        public string nombrescliente { get; set; }
+        public string apellidoscliente { get; set; }
+        public List<Servicio> servicios { get; set; }
+
     }
 
     class CotizacionModel
@@ -41,8 +45,14 @@ namespace Punto_de_venta.Modelos
             {
                 string __idcotizacionreturn = "", query = "";
                 sqlcon.Open();
-                query = "INSERT INTO cotizaciones(idusuario,fecha,hora,importe,activo)VALUES(@idusuario,@fecha,@hora, @importe,@activo) SELECT SCOPE_IDENTITY() AS 'idcotizacion';";
-                __idcotizacionreturn = sqlcon.Query<Cotizacion>(query,new { idusuario = cotizacionnueva.idusuario, fecha = cotizacionnueva.fecha, hora = cotizacionnueva.hora, importe = cotizacionnueva.importe, activo = cotizacionnueva.activo }, commandType: CommandType.Text).ToList()[0].idcotizacion;
+                query = "INSERT INTO cotizaciones(idusuario,fecha,hora,importe,activo,nombrescliente,apellidoscliente)VALUES(@idusuario,@fecha,@hora, @importe,@activo,@nombrescliente,@apellidoscliente) SELECT SCOPE_IDENTITY() AS 'idcotizacion';";
+                __idcotizacionreturn = sqlcon.Query<Cotizacion>(query,new { idusuario = cotizacionnueva.idusuario, 
+                                                                                fecha = cotizacionnueva.fecha, 
+                                                                                 hora = cotizacionnueva.hora, 
+                                                                              importe = cotizacionnueva.importe, 
+                                                                               activo = cotizacionnueva.activo, 
+                                                                       nombrescliente = cotizacionnueva.nombrescliente, 
+                                                                     apellidoscliente = cotizacionnueva.apellidoscliente}, commandType: CommandType.Text).ToList()[0].idcotizacion;
                 sqlcon.Close();
                 return __idcotizacionreturn;
             }
@@ -59,8 +69,29 @@ namespace Punto_de_venta.Modelos
                 List<Cotizacion> _datosreturn = new List<Cotizacion>();
 
                 sqlcon.Open();
-                string query = "SELECT idcotizacion,idusuario,fecha, convert(varchar, hora, 8) AS hora,importe,activo FROM cotizaciones;";
+                string query = "SELECT idcotizacion,idusuario,fecha, convert(varchar, hora, 8) AS hora,importe,activo,nombrescliente,apellidoscliente FROM cotizaciones;";
                 _datosreturn = sqlcon.Query<Cotizacion>(query, commandType: CommandType.Text).ToList();
+                sqlcon.Close();
+
+                return _datosreturn;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para solicitar los datos de cotizacion\n" + ex.Message);
+            }
+
+        }
+
+        public List<Cotizacion> DatosTablaCotizacionesPorId(string id)
+        {
+            try
+            {
+                List<Cotizacion> _datosreturn = new List<Cotizacion>();
+
+                sqlcon.Open();
+                string query = "SELECT idcotizacion,idusuario,fecha, convert(varchar, hora, 8) AS hora,importe,activo,nombrescliente,apellidoscliente FROM cotizaciones WHERE idcotizacion = @idcotizacion;";
+                _datosreturn = sqlcon.Query<Cotizacion>(query,new { idcotizacion = id }, commandType: CommandType.Text).ToList();
                 sqlcon.Close();
 
                 return _datosreturn;

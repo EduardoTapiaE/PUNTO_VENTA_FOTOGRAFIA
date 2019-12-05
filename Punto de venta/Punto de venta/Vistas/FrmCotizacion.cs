@@ -57,6 +57,7 @@ namespace Punto_de_venta.Vistas
         {
             try
             {
+                CmbCotizacionesGuardadas.Enabled = false;
                 PnlDatosPaquetePre.Enabled = true;
             }
             catch (Exception ex)
@@ -104,9 +105,27 @@ namespace Punto_de_venta.Vistas
 
         private void FrmCotizacion_Enter(object sender, EventArgs e)
         {
+           
+        }
+
+        private void BtnCotizar_Click(object sender, EventArgs e)
+        {
             try
             {
-                LLenarCmbPaquetesPredefinidos();
+                if (PnlDatosPaquetePre.Enabled)
+                {
+                    GenerarCotizacion();
+                    GuardarCotizacion();
+                    LlenarCmbCotizacionesGuardadas();
+                }
+                else
+                {
+
+                    ObtenerDatosDeCotizacion(CmbCotizacionesGuardadas.SelectedValue.ToString());
+                    GenerarCotizacion();
+                    ValidarSiSeHaraLaVentaDeLaCotizacion(CmbCotizacionesGuardadas.Text);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -114,52 +133,51 @@ namespace Punto_de_venta.Vistas
             }
         }
 
-        private void BtnCotizar_Click(object sender, EventArgs e)
+        private void ObtenerDatosDeCotizacion(string id)
         {
-            try
+            var _datoscotizacion = ctlerCotizacion.GetCotizacion(id);
+            TxtNombres.Text = _datoscotizacion.nombrescliente;
+            TxtApellidos.Text = _datoscotizacion.apellidoscliente;
+            serviciosDelPaquete = _datoscotizacion.servicios;
+            DgvServiciosDelPaquete.DataSource = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
+        }
+
+        private void GenerarCotizacion()
+        {
+            if (PnlPaquetePredefinido.Visible)
             {
-                if (PnlPaquetePredefinido.Visible)
+                DataTable _serviciosdelpaquete = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
+                if (_serviciosdelpaquete.Rows.Count > 0)
                 {
-                    if (CmbPaquetesPredefinidos.SelectedValue != null)
+                    double _cotizacion = 0;
+                    foreach (DataRow dr in _serviciosdelpaquete.Rows)
                     {
-                        DataTable _serviciosdelpaquete = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
-                        if (_serviciosdelpaquete.Rows.Count > 0)
+                        if (dr["Unitario"].ToString() == "0")
                         {
-                            double _cotizacion = 0;
-                            foreach (DataRow dr in _serviciosdelpaquete.Rows)
+                            if (dr["Costo"].ToString() != "0" && dr["Cantidad"].ToString() != "0")
                             {
-                                if (dr["Unitario"].ToString() == "0")
-                                {
-                                    if (dr["Costo"].ToString() != "0" && dr["Cantidad"].ToString() != "0")
-                                    {
-                                        double _costo = Convert.ToDouble(dr["Costo"].ToString());
-                                        int _cantidad = Convert.ToInt32(dr["Cantidad"].ToString());
+                                double _costo = Convert.ToDouble(dr["Costo"].ToString());
+                                int _cantidad = Convert.ToInt32(dr["Cantidad"].ToString());
 
-                                        _cotizacion += _costo * _cantidad;
-                                    }
-                                }
-                                else
-                                {
-                                    if (dr["Costo"].ToString() != "0")
-                                    {
-                                        double _costo = Convert.ToDouble(dr["Costo"].ToString());
-                                        _cotizacion += _costo;
-                                    }
-                                }
-
+                                _cotizacion += _costo * _cantidad;
                             }
-
-                            TxtCotizacion.Text = _cotizacion.ToString();
                         }
+                        else
+                        {
+                            if (dr["Costo"].ToString() != "0")
+                            {
+                                double _costo = Convert.ToDouble(dr["Costo"].ToString());
+                                _cotizacion += _costo;
+                            }
+                        }
+
                     }
-                }
-                else
-                { 
+
+                    TxtCotizacion.Text = _cotizacion.ToString();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -167,30 +185,7 @@ namespace Punto_de_venta.Vistas
         {
             try
             {
-                if (PnlPaquetePredefinido.Visible)
-                {
-                    if (TxtCotizacion.Text != "")
-                    {
-                        string _id = ctlerCotizacion.AgregarCotizacion(TxtCotizacion.Text, serviciosDelPaquete);
-                        MessageBox.Show("Datos agregados");
-                        LimpiarCampos();
-                        DialogResult _respuesta = MessageBox.Show("¿Desea realizar venta de la cotizacion?","Venta",MessageBoxButtons.YesNo);
-                        if (_respuesta == DialogResult.Yes)
-                        {
-                            FrmMenuPrincipal _formularioabierto = Application.OpenForms.OfType<FrmMenuPrincipal>().Where(pre => pre.Name == "FrmMenuPrincipal").SingleOrDefault();
-                            if (_formularioabierto != null)
-                            {
-                                _formularioabierto.AbrirFormulario(new FrmVenta(_id));
-                                _formularioabierto.CambiarNombreTitulo("VENTA");
-                            }
-                        }
-                    }
-                   
-                }
-                else if (PnlPaquetePersonalizado.Visible)
-                {
-                    
-                }
+                GuardarCotizacion();
             }
             catch (Exception ex)
             {
@@ -198,9 +193,80 @@ namespace Punto_de_venta.Vistas
             }
         }
 
+        private void GuardarCotizacion()
+        {
+            if (PnlPaquetePredefinido.Visible)
+            {
+                if (TxtCotizacion.Text != "")
+                {
+                    string _id = ctlerCotizacion.AgregarCotizacion(TxtCotizacion.Text,TxtNombres.Text,TxtApellidos.Text, serviciosDelPaquete);
+                    MessageBox.Show(string.Format("Id de cotizacion: {0}\nCotizacion realizada para el cleinte {1} {2}\nImporte: {3}",_id, TxtNombres.Text,TxtApellidos.Text,TxtCotizacion.Text));
+                    LimpiarCampos();
+                    ValidarSiSeHaraLaVentaDeLaCotizacion(_id);
+                }
+
+            }
+            else if (PnlPaquetePersonalizado.Visible)
+            {
+
+            }
+        }
+
+        private void ValidarSiSeHaraLaVentaDeLaCotizacion(string id)
+        {
+            DialogResult _respuesta = MessageBox.Show("¿Desea realizar venta de la cotizacion?", "Venta", MessageBoxButtons.YesNo);
+            if (_respuesta == DialogResult.Yes)
+            {
+                FrmMenuPrincipal _formularioabierto = Application.OpenForms.OfType<FrmMenuPrincipal>().Where(pre => pre.Name == "FrmMenuPrincipal").SingleOrDefault();
+                if (_formularioabierto != null)
+                {
+                    _formularioabierto.AbrirFormulario(new FrmVenta(id));
+                    _formularioabierto.CambiarNombreTitulo("VENTA");
+                }
+            }
+        }
+
         private void LimpiarCampos()
         {
             CmbPaquetesPredefinidos.SelectedIndex = -1;
+            TxtApellidos.Text = "";
+            TxtNombres.Text = "";
+            TxtCotizacion.Text = "";
+            PnlDatosPaquetePre.Enabled = false;
+            CmbCotizacionesGuardadas.Enabled = true;
+        }
+
+        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void FrmCotizacion_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                LLenarCmbPaquetesPredefinidos();
+                LlenarCmbCotizacionesGuardadas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LlenarCmbCotizacionesGuardadas()
+        {
+            DataTable _tablacotizaciones = ctlerCotizacion.ConvertirListaDeCotizacionesAFormatoDataTable(ctlerCotizacion.GetTablaCotizaciones());
+            CmbCotizacionesGuardadas.ValueMember = "Id";
+            CmbCotizacionesGuardadas.DisplayMember = "Id";
+            CmbCotizacionesGuardadas.DataSource = _tablacotizaciones;
+            CmbCotizacionesGuardadas.Text = "";
+            CmbCotizacionesGuardadas.SelectedValue = "-1";
         }
     }
 }

@@ -68,5 +68,23 @@ namespace Punto_de_venta.Modelos
                 throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para solicitar los datos servicios del paquete\n" + ex.Message);
             }
         }
+        public List<Servicio> DatosTablaServiciosParaCotizacionPorId(string idcotizacion)
+        {
+            try
+            {
+                List<Servicio> _datosreturn = new List<Servicio>();
+                sqlcon.Open();
+                string query = "SELECT s.idservicio,s.nombre,s.detalles,s.costo,s.unitario,pdc.cantidad FROM servicios s,cotizaciones c, paquetedecotizacion pdc WHERE c.idcotizacion = pdc.idcotizacion AND pdc.idservicio = s.idservicio AND c.idcotizacion = @idcotizacion;";
+                _datosreturn = sqlcon.Query<Servicio>(query, new { idcotizacion = idcotizacion }, commandType: CommandType.Text).ToList();
+                sqlcon.Close();
+
+                return _datosreturn;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para solicitar los datos servicios del paquete\n" + ex.Message);
+            }
+        }
     }
 }
