@@ -17,121 +17,12 @@ namespace Punto_de_venta.Vistas
         PaqueteController ctlerPaquete = new PaqueteController();
         ServicioController ctlerServicio = new ServicioController();
         List<Modelos.Servicio> serviciosDelPaquete = new List<Modelos.Servicio>();
+        
         public FrmCotizacion()
         {
             InitializeComponent();
         }
 
-        private void BtnPersonalizar_Click(object sender, EventArgs e)
-        {
-            if (PnlPaquetePredefinido.Visible)
-            {
-                PnlPaquetePredefinido.Visible = false;
-                PnlPaquetePersonalizado.Visible = true;
-                BtnPersonalizar.Text = "Predefinido";
-            }
-            else if (PnlPaquetePersonalizado.Visible)
-            {
-                PnlPaquetePersonalizado.Visible = false;
-                PnlPaquetePredefinido.Visible = true;
-                BtnPersonalizar.Text = "Personalizar";
-            }
-        }
-
-        private void FrmCotizacion_Load(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void LLenarCmbPaquetesPredefinidos()
-        {
-            DataTable _tablapaquetespredefinidos = ctlerPaquete.GetTablaPaquetesPredefinidosEnFormatoDataTable();
-            CmbPaquetesPredefinidos.ValueMember = "Id";
-            CmbPaquetesPredefinidos.DisplayMember = "Nombre";
-            CmbPaquetesPredefinidos.DataSource = _tablapaquetespredefinidos;
-            CmbPaquetesPredefinidos.Text = "";
-            CmbPaquetesPredefinidos.SelectedValue = "-1";
-        }
-
-        private void BtnNuevo_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                CmbCotizacionesGuardadas.Enabled = false;
-                PnlDatosPaquetePre.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void CmbPaquetesPredefinidos_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (CmbPaquetesPredefinidos.SelectedValue != null)
-                {
-                    TxtCotizacion.Text = "";
-                    string _idpaquete = CmbPaquetesPredefinidos.SelectedValue.ToString();
-                    var _paquete = ctlerPaquete.GetPaquetePredefinidoPorId(_idpaquete);
-                    RtxDetallesPaquetePre.Text = _paquete.detalles;
-                    serviciosDelPaquete = _paquete.servicios;
-                    DgvServiciosDelPaquete.DataSource = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void CmbPaquetesPredefinidos_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (CmbPaquetesPredefinidos.SelectedValue == null)
-                {
-                    RtxDetallesPaquetePre.Text = "";
-                    DgvServiciosDelPaquete.DataSource = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void FrmCotizacion_Enter(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void BtnCotizar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (PnlDatosPaquetePre.Enabled)
-                {
-                    GenerarCotizacion();
-                    GuardarCotizacion();
-                    LlenarCmbCotizacionesGuardadas();
-                }
-                else
-                {
-
-                    ObtenerDatosDeCotizacion(CmbCotizacionesGuardadas.SelectedValue.ToString());
-                    GenerarCotizacion();
-                    ValidarSiSeHaraLaVentaDeLaCotizacion(CmbCotizacionesGuardadas.Text);
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void ObtenerDatosDeCotizacion(string id)
         {
@@ -141,7 +32,6 @@ namespace Punto_de_venta.Vistas
             serviciosDelPaquete = _datoscotizacion.servicios;
             DgvServiciosDelPaquete.DataSource = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
         }
-
         private void GenerarCotizacion()
         {
             if (PnlPaquetePredefinido.Visible)
@@ -149,7 +39,7 @@ namespace Punto_de_venta.Vistas
                 DataTable _serviciosdelpaquete = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
                 if (_serviciosdelpaquete.Rows.Count > 0)
                 {
-                    double _cotizacion = 0;
+                    double _cotizacion = 0, _impuesto = 0;
                     foreach (DataRow dr in _serviciosdelpaquete.Rows)
                     {
                         if (dr["Unitario"].ToString() == "0")
@@ -172,27 +62,16 @@ namespace Punto_de_venta.Vistas
                         }
 
                     }
-
-                    TxtCotizacion.Text = _cotizacion.ToString();
+                    _impuesto = _cotizacion * 0.16;
+                    TxtMontoInicial.Text = _cotizacion.ToString();
+                    TxtIVA.Text = _impuesto.ToString();
+                    TxtCotizacion.Text =Convert.ToString(_cotizacion + _impuesto);
                 }
             }
             else
             {
             }
         }
-
-        private void BtnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                GuardarCotizacion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void GuardarCotizacion()
         {
             if (PnlPaquetePredefinido.Visible)
@@ -211,7 +90,6 @@ namespace Punto_de_venta.Vistas
 
             }
         }
-
         private void ValidarSiSeHaraLaVentaDeLaCotizacion(string id)
         {
             DialogResult _respuesta = MessageBox.Show("¿Desea realizar venta de la cotizacion?", "Venta", MessageBoxButtons.YesNo);
@@ -225,27 +103,17 @@ namespace Punto_de_venta.Vistas
                 }
             }
         }
-
         private void LimpiarCampos()
         {
             CmbPaquetesPredefinidos.SelectedIndex = -1;
             TxtApellidos.Text = "";
             TxtNombres.Text = "";
             TxtCotizacion.Text = "";
+            TxtIVA.Text = "";
+            TxtMontoInicial.Text = "";
             PnlDatosPaquetePre.Enabled = false;
             CmbCotizacionesGuardadas.Enabled = true;
         }
-
-        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
-        }
-
-        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
-        }
-
         private void FrmCotizacion_Shown(object sender, EventArgs e)
         {
             try
@@ -259,6 +127,7 @@ namespace Punto_de_venta.Vistas
             }
         }
 
+        #region LLENARCOMBOBOX
         private void LlenarCmbCotizacionesGuardadas()
         {
             DataTable _tablacotizaciones = ctlerCotizacion.ConvertirListaDeCotizacionesAFormatoDataTable(ctlerCotizacion.GetTablaCotizaciones());
@@ -268,5 +137,129 @@ namespace Punto_de_venta.Vistas
             CmbCotizacionesGuardadas.Text = "";
             CmbCotizacionesGuardadas.SelectedValue = "-1";
         }
+        private void LLenarCmbPaquetesPredefinidos()
+        {
+            DataTable _tablapaquetespredefinidos = ctlerPaquete.GetTablaPaquetesPredefinidosEnFormatoDataTable();
+            CmbPaquetesPredefinidos.ValueMember = "Id";
+            CmbPaquetesPredefinidos.DisplayMember = "Nombre";
+            CmbPaquetesPredefinidos.DataSource = _tablapaquetespredefinidos;
+            CmbPaquetesPredefinidos.Text = "";
+            CmbPaquetesPredefinidos.SelectedValue = "-1";
+        }
+        #endregion
+
+        #region BUTTON
+        private void BtnPersonalizar_Click(object sender, EventArgs e)
+        {
+            if (PnlPaquetePredefinido.Visible)
+            {
+                PnlPaquetePredefinido.Visible = false;
+                PnlPaquetePersonalizado.Visible = true;
+                BtnPersonalizar.Text = "Predefinido";
+            }
+            else if (PnlPaquetePersonalizado.Visible)
+            {
+                PnlPaquetePersonalizado.Visible = false;
+                PnlPaquetePredefinido.Visible = true;
+                BtnPersonalizar.Text = "Personalizar";
+            }
+        }
+        private void BtnNuevo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CmbCotizacionesGuardadas.Enabled = false;
+                PnlDatosPaquetePre.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void BtnCotizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PnlDatosPaquetePre.Enabled)
+                {
+                    GenerarCotizacion();
+                    GuardarCotizacion();
+                    LlenarCmbCotizacionesGuardadas();
+                }
+                else
+                {
+
+                    ObtenerDatosDeCotizacion(CmbCotizacionesGuardadas.SelectedValue.ToString());
+                    GenerarCotizacion();
+                    ValidarSiSeHaraLaVentaDeLaCotizacion(CmbCotizacionesGuardadas.Text);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GuardarCotizacion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        #region COMBOBOX
+        private void CmbPaquetesPredefinidos_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CmbPaquetesPredefinidos.SelectedValue != null)
+                {
+                    TxtCotizacion.Text = "";
+                    string _idpaquete = CmbPaquetesPredefinidos.SelectedValue.ToString();
+                    var _paquete = ctlerPaquete.GetPaquetePredefinidoPorId(_idpaquete);
+                    RtxDetallesPaquetePre.Text = _paquete.detalles;
+                    serviciosDelPaquete = _paquete.servicios;
+                    DgvServiciosDelPaquete.DataSource = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void CmbPaquetesPredefinidos_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CmbPaquetesPredefinidos.SelectedValue == null)
+                {
+                    RtxDetallesPaquetePre.Text = "";
+                    DgvServiciosDelPaquete.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        #region TEXTBOX
+        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+        }
+        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+        }
+        #endregion
     }
 }

@@ -30,9 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.DgvServiciosDelPaquete = new System.Windows.Forms.DataGridView();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.TxtCotizacion = new System.Windows.Forms.TextBox();
-            this.DgvServiciosDelPaquete = new System.Windows.Forms.DataGridView();
             this.BtnCotizar = new System.Windows.Forms.Button();
             this.BtnPersonalizar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
@@ -61,10 +63,14 @@
             this.CmbPaquetesPredefinidos = new System.Windows.Forms.ComboBox();
             this.LblNombrePaquetePredefinido = new System.Windows.Forms.Label();
             this.LblDatosDelUsuario = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.TxtMontoInicial = new System.Windows.Forms.TextBox();
+            this.TxtIVA = new System.Windows.Forms.TextBox();
+            this.LblMontoInicial = new System.Windows.Forms.Label();
+            this.LblIVA = new System.Windows.Forms.Label();
+            this.LblMontoFinal = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvServiciosDelPaquete)).BeginInit();
             this.PnlPaquetePersonalizado.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -73,7 +79,6 @@
             this.PnlPaquetePredefinido.SuspendLayout();
             this.PnlDatosPaquetePre.SuspendLayout();
             this.PnlDetallesPaquetePre.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -91,6 +96,11 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.LblMontoFinal);
+            this.panel6.Controls.Add(this.LblIVA);
+            this.panel6.Controls.Add(this.LblMontoInicial);
+            this.panel6.Controls.Add(this.TxtIVA);
+            this.panel6.Controls.Add(this.TxtMontoInicial);
             this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.panel2);
             this.panel6.Controls.Add(this.BtnGuardar);
@@ -103,6 +113,33 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(875, 284);
             this.panel6.TabIndex = 27;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(65, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 16);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Servicios";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.DgvServiciosDelPaquete);
+            this.panel2.Location = new System.Drawing.Point(53, 18);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(778, 176);
+            this.panel2.TabIndex = 30;
+            // 
+            // DgvServiciosDelPaquete
+            // 
+            this.DgvServiciosDelPaquete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvServiciosDelPaquete.Location = new System.Drawing.Point(3, 13);
+            this.DgvServiciosDelPaquete.Name = "DgvServiciosDelPaquete";
+            this.DgvServiciosDelPaquete.Size = new System.Drawing.Size(768, 158);
+            this.DgvServiciosDelPaquete.TabIndex = 27;
             // 
             // BtnGuardar
             // 
@@ -123,20 +160,12 @@
             // TxtCotizacion
             // 
             this.TxtCotizacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCotizacion.Location = new System.Drawing.Point(679, 200);
+            this.TxtCotizacion.Location = new System.Drawing.Point(679, 196);
             this.TxtCotizacion.Name = "TxtCotizacion";
             this.TxtCotizacion.ReadOnly = true;
             this.TxtCotizacion.Size = new System.Drawing.Size(142, 26);
             this.TxtCotizacion.TabIndex = 28;
             this.TxtCotizacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // DgvServiciosDelPaquete
-            // 
-            this.DgvServiciosDelPaquete.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvServiciosDelPaquete.Location = new System.Drawing.Point(3, 13);
-            this.DgvServiciosDelPaquete.Name = "DgvServiciosDelPaquete";
-            this.DgvServiciosDelPaquete.Size = new System.Drawing.Size(768, 158);
-            this.DgvServiciosDelPaquete.TabIndex = 27;
             // 
             // BtnCotizar
             // 
@@ -145,7 +174,7 @@
             this.BtnCotizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCotizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCotizar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BtnCotizar.Location = new System.Drawing.Point(461, 228);
+            this.BtnCotizar.Location = new System.Drawing.Point(461, 240);
             this.BtnCotizar.Name = "BtnCotizar";
             this.BtnCotizar.Size = new System.Drawing.Size(130, 36);
             this.BtnCotizar.TabIndex = 26;
@@ -176,7 +205,7 @@
             this.BtnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNuevo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BtnNuevo.Location = new System.Drawing.Point(325, 228);
+            this.BtnNuevo.Location = new System.Drawing.Point(325, 240);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(130, 36);
             this.BtnNuevo.TabIndex = 24;
@@ -466,24 +495,55 @@
             this.LblDatosDelUsuario.TabIndex = 23;
             this.LblDatosDelUsuario.Text = "Paquete predefinido";
             // 
-            // panel2
+            // TxtMontoInicial
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.DgvServiciosDelPaquete);
-            this.panel2.Location = new System.Drawing.Point(53, 18);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(778, 176);
-            this.panel2.TabIndex = 30;
+            this.TxtMontoInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMontoInicial.Location = new System.Drawing.Point(160, 196);
+            this.TxtMontoInicial.Name = "TxtMontoInicial";
+            this.TxtMontoInicial.ReadOnly = true;
+            this.TxtMontoInicial.Size = new System.Drawing.Size(142, 26);
+            this.TxtMontoInicial.TabIndex = 31;
+            this.TxtMontoInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label2
+            // TxtIVA
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 16);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "Servicios";
+            this.TxtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIVA.Location = new System.Drawing.Point(422, 196);
+            this.TxtIVA.Name = "TxtIVA";
+            this.TxtIVA.ReadOnly = true;
+            this.TxtIVA.Size = new System.Drawing.Size(142, 26);
+            this.TxtIVA.TabIndex = 32;
+            this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // LblMontoInicial
+            // 
+            this.LblMontoInicial.AutoSize = true;
+            this.LblMontoInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMontoInicial.Location = new System.Drawing.Point(59, 202);
+            this.LblMontoInicial.Name = "LblMontoInicial";
+            this.LblMontoInicial.Size = new System.Drawing.Size(95, 16);
+            this.LblMontoInicial.TabIndex = 35;
+            this.LblMontoInicial.Text = "Monto Inicial";
+            // 
+            // LblIVA
+            // 
+            this.LblIVA.AutoSize = true;
+            this.LblIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIVA.Location = new System.Drawing.Point(335, 202);
+            this.LblIVA.Name = "LblIVA";
+            this.LblIVA.Size = new System.Drawing.Size(65, 16);
+            this.LblIVA.TabIndex = 36;
+            this.LblIVA.Text = "IVA 16%";
+            // 
+            // LblMontoFinal
+            // 
+            this.LblMontoFinal.AutoSize = true;
+            this.LblMontoFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMontoFinal.Location = new System.Drawing.Point(580, 202);
+            this.LblMontoFinal.Name = "LblMontoFinal";
+            this.LblMontoFinal.Size = new System.Drawing.Size(83, 16);
+            this.LblMontoFinal.TabIndex = 37;
+            this.LblMontoFinal.Text = "Monto final";
             // 
             // FrmCotizacion
             // 
@@ -495,13 +555,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCotizacion";
             this.Text = "FrmCotizacion";
-            this.Load += new System.EventHandler(this.FrmCotizacion_Load);
             this.Shown += new System.EventHandler(this.FrmCotizacion_Shown);
-            this.Enter += new System.EventHandler(this.FrmCotizacion_Enter);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvServiciosDelPaquete)).EndInit();
             this.PnlPaquetePersonalizado.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -513,7 +572,6 @@
             this.PnlDatosPaquetePre.ResumeLayout(false);
             this.PnlDatosPaquetePre.PerformLayout();
             this.PnlDetallesPaquetePre.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -555,5 +613,10 @@
         private System.Windows.Forms.Label LblCotizacionesGuardadas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label LblMontoFinal;
+        private System.Windows.Forms.Label LblIVA;
+        private System.Windows.Forms.Label LblMontoInicial;
+        private System.Windows.Forms.TextBox TxtIVA;
+        private System.Windows.Forms.TextBox TxtMontoInicial;
     }
 }
