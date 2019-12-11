@@ -57,11 +57,13 @@
     <Compile Include="Controladores\ServicioController.cs" />
     <Compile Include="Controladores\TipoUsuarioController.cs" />
     <Compile Include="Controladores\UsuarioController.cs" />
+    <Compile Include="Controladores\VentaController.cs" />
     <Compile Include="Modelos\CotizacionModel.cs" />
     <Compile Include="Modelos\PaqueteModel.cs" />
     <Compile Include="Modelos\ServicioModel.cs" />
     <Compile Include="Modelos\TipoUsuarioModel.cs" />
     <Compile Include="Modelos\UsuarioModel.cs" />
+    <Compile Include="Modelos\VentaModel.cs" />
     <Compile Include="Vistas\FrmCotizacion.cs">
       <SubType>Form</SubType>
     </Compile>
