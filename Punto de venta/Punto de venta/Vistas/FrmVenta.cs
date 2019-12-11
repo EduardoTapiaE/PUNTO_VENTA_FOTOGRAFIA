@@ -98,19 +98,22 @@ namespace Punto_de_venta.Vistas
                            _hevento = DtpHEvento.Value.ToString("hh:mm:ss"),
                            _fentrega = DtpFEntrega.Value.ToString("yyyy-MM-dd"),
                            _hentrega = DtpHEntrega.Value.ToString("hh:mm:ss");
-                   string _idventa = ctlerVenta.AgregarVenta(CmbIdCotizacion.Text,
-                                                             TxtNombres.Text,
-                                                             TxtApellidos.Text,
-                                                             TxtDomicilio.Text,
-                                                             TxtTelefono.Text,
-                                                             TxtCorreo.Text,
-                                                             _fevento,
-                                                             _hevento,
-                                                             _fentrega,
-                                                             _hentrega,
-                                                             TxtSaldo.Text,
-                                                             "1",
-                                                             CmbTipoVenta.Text);
+                    #region REALIZAR VENTA
+                    string _idventa = ctlerVenta.AgregarVenta(CmbIdCotizacion.Text,
+                                                            TxtNombres.Text,
+                                                            TxtApellidos.Text,
+                                                            TxtDomicilio.Text,
+                                                            TxtTelefono.Text,
+                                                            TxtCorreo.Text,
+                                                            _fevento,
+                                                            _hevento,
+                                                            _fentrega,
+                                                            _hentrega,
+                                                            TxtImporte.Text,
+                                                            "1",
+                                                            CmbTipoVenta.Text);
+                    #endregion
+                    //GUARDAR PAGO
 
                     MessageBox.Show("Y LOS BILLETES? COMO DICE EL COMPA JOSH\nIdventa: "+_idventa);
                 }
