@@ -33,5 +33,16 @@ namespace Punto_de_venta.Controladores
             _datosreturn = modelVenta.NuevaVenta(_venta);
             return _datosreturn;
         }
+
+        public void ModificarSaldoVenta(string idventa, string saldo)
+        {
+            Venta _venta = new Venta() 
+            {
+                idventa = idventa,
+                saldo = saldo
+            };
+
+            modelVenta.EditarSaldoVenta(_venta);
+        }
     }
 }

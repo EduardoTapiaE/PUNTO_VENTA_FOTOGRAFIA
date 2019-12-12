@@ -197,12 +197,14 @@
             // 
             // TxtPago
             // 
+            this.TxtPago.Enabled = false;
             this.TxtPago.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPago.Location = new System.Drawing.Point(244, 8);
             this.TxtPago.Name = "TxtPago";
             this.TxtPago.Size = new System.Drawing.Size(116, 22);
             this.TxtPago.TabIndex = 49;
             this.TxtPago.Text = "0.0";
+            this.TxtPago.TextChanged += new System.EventHandler(this.TxtPago_TextChanged);
             // 
             // LblPago
             // 
@@ -247,6 +249,7 @@
             this.CmbTipoVenta.Name = "CmbTipoVenta";
             this.CmbTipoVenta.Size = new System.Drawing.Size(217, 24);
             this.CmbTipoVenta.TabIndex = 49;
+            this.CmbTipoVenta.SelectedIndexChanged += new System.EventHandler(this.CmbTipoVenta_SelectedIndexChanged);
             // 
             // LblTipoVenta
             // 

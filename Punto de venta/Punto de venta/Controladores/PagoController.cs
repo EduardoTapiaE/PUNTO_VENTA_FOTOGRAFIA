@@ -35,8 +35,9 @@ namespace Punto_de_venta.Controladores
 
     class PagoController
     {
+        VentaController ctlerVenta = new VentaController();
         PagoModel modelPago = new PagoModel();
-        public string AgregarPago(string idusuario,string idventa,string importe,string cambio,string concepto,string fecha,string hora,string tipopago)
+        public string AgregarPago(string idusuario,string idventa,string importe,string cambio,string concepto,string fecha,string hora,string tipopago,string saldorestantedeventa)
         {
             string _datosreturn = "";
             Pago _pago = new Pago() 
@@ -54,7 +55,7 @@ namespace Punto_de_venta.Controladores
             _datosreturn = modelPago.NuevoPago(_pago);
             if (_datosreturn != "")
             {
-                //MODIFICAR TABLA VENTA EN EL CAMPO SALDO PARA RESTAR EL PAGO REALIZADO
+                ctlerVenta.ModificarSaldoVenta(idventa,saldorestantedeventa);
             }
             return _datosreturn;
         }

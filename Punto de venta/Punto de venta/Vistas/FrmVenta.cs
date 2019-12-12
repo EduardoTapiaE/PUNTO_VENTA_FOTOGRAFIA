@@ -19,6 +19,9 @@ namespace Punto_de_venta.Vistas
         PagoController ctlerPago = new PagoController();
         List<Modelos.Servicio> serviciosDelPaquete = new List<Modelos.Servicio>();
         string idCotizacion = "";
+        double saldoinicial = 0;
+        public bool transferenciaExitosa = false;
+
         public FrmVenta(string idcotizacion)
         {
             idCotizacion = idcotizacion;
@@ -33,6 +36,7 @@ namespace Punto_de_venta.Vistas
             TxtImporte.Text = _datoscotizacion.importe;
             TxtSaldo.Text = _datoscotizacion.importe;
             serviciosDelPaquete = _datoscotizacion.servicios;
+            saldoinicial = Convert.ToDouble(TxtImporte.Text);
             DgvServiciosVenta.DataSource = ctlerServicio.ConvertirListaDeServiciosAFormatoDataTable(serviciosDelPaquete);
         }
         private void FrmVenta_Load(object sender, EventArgs e)
@@ -93,46 +97,77 @@ namespace Punto_de_venta.Vistas
         {
             try
             {
+                transferenciaExitosa = false;
                 if (CmbTipoVenta.SelectedIndex == 0)
                 {
-                    FrmTransferencia _form = new FrmTransferencia();
+                    FrmTransferencia _form = new FrmTransferencia(TxtImporte.Text);
                     _form.ShowDialog();
-                   // HacerTranferencia();
+                    if (transferenciaExitosa)
+                    {
+                        string _idventa = RealizarVenta();
+                        string _idpago = GuardarPago(_idventa);
+                        MessageBox.Show(string.Format("ID VENTA: {0}\nCLIENTE {1} {2}\nPAGO: {3}\nCAMBIO: {4}", _idventa,TxtNombres.Text,TxtApellidos.Text,TxtPago.Text,TxtCambio.Text));
+                    }
+                    else
+                    {
+                        MessageBox.Show("NO SE PUDO CONCLUIR CON LA VENTA");
+                    }
                 }
                 else if (CmbTipoVenta.SelectedIndex == 1)
                 {
-                    string _fevento = DtpFEvento.Value.ToString("yyyy-MM-dd"),
-                           _hevento = DtpHEvento.Value.ToString("hh:mm:ss"),
-                           _fentrega = DtpFEntrega.Value.ToString("yyyy-MM-dd"),
-                           _hentrega = DtpHEntrega.Value.ToString("hh:mm:ss");
-                    #region REALIZAR VENTA
-                    string _idventa = ctlerVenta.AgregarVenta(CmbIdCotizacion.Text,
-                                                            TxtNombres.Text,
-                                                            TxtApellidos.Text,
-                                                            TxtDomicilio.Text,
-                                                            TxtTelefono.Text,
-                                                            TxtCorreo.Text,
-                                                            _fevento,
-                                                            _hevento,
-                                                            _fentrega,
-                                                            _hentrega,
-                                                            TxtImporte.Text,
-                                                            "1",
-                                                            CmbTipoVenta.Text);
-                    #endregion
-                    //GUARDAR PAGO
-
-                    MessageBox.Show("Y LOS BILLETES? COMO DICE EL COMPA JOSH\nIdventa: "+_idventa);
+                    string _idventa = RealizarVenta();
+                    string _idpago = GuardarPago(_idventa);
                 }
                 else 
                 {
-                    MessageBox.Show("Y ESE FALLO VIEJON? NO SELECCIONO EL TIPO DE VENTA");
+                    MessageBox.Show("NO SELECCIONO EL TIPO DE VENTA");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private string GuardarPago(string idventa)
+        {
+            string _idusuario = UsuarioController.idUsuarioActual,
+                   _idventa = idventa, 
+                   _importe = TxtPago.Text,
+                   _cambio = TxtCambio.Text, 
+                   _concepto = "PAGO REALIZADO EN VENTA", 
+                   _fecha = DateTime.Now.ToString("yyyy-MM-dd"),
+                   _hora = DateTime.Now.ToString("hh:mm:ss"), 
+                   _tipopago =CmbTipoVenta.Text,
+                   _salodeventa = TxtSaldo.Text,
+                   _idpago = "";
+
+            _idpago = ctlerPago.AgregarPago(_idusuario, _idventa, _importe, _cambio, _concepto, _fecha, _hora, _tipopago,_salodeventa);
+            return _idpago;
+        }
+
+        private string RealizarVenta()
+        {
+            string _fevento = DtpFEvento.Value.ToString("yyyy-MM-dd"),
+                          _hevento = DtpHEvento.Value.ToString("hh:mm:ss"),
+                          _fentrega = DtpFEntrega.Value.ToString("yyyy-MM-dd"),
+                          _hentrega = DtpHEntrega.Value.ToString("hh:mm:ss");
+            #region REALIZAR VENTA
+            string _idventa = ctlerVenta.AgregarVenta(CmbIdCotizacion.Text,
+                                                    TxtNombres.Text,
+                                                    TxtApellidos.Text,
+                                                    TxtDomicilio.Text,
+                                                    TxtTelefono.Text,
+                                                    TxtCorreo.Text,
+                                                    _fevento,
+                                                    _hevento,
+                                                    _fentrega,
+                                                    _hentrega,
+                                                    TxtImporte.Text,
+                                                    "1",
+                                                    CmbTipoVenta.Text);
+            #endregion
+            return _idventa;
         }
 
         private async void HacerTranferencia()
@@ -154,6 +189,48 @@ namespace Punto_de_venta.Vistas
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void TxtPago_TextChanged(object sender, EventArgs e)
+        {
+            double importe = 0;
+            if (TxtPago.Text == "" || TxtPago.Text == ".")
+            {
+                importe = 0;
+            }
+            else
+            {
+                importe = Convert.ToDouble(TxtPago.Text);
+            }
+
+            double saldo = 0;
+            double cambio = 0;
+            if (importe < saldoinicial)
+            {
+                saldo = saldoinicial - importe;
+            }
+            else
+            {
+                cambio = importe - saldoinicial;
+                saldo = saldoinicial - (importe - cambio);
+            }
+
+            TxtSaldo.Text = Convert.ToString(saldo);
+            TxtCambio.Text = Convert.ToString(cambio);
+        }
+
+        private void CmbTipoVenta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CmbTipoVenta.SelectedIndex == 0)
+            {
+                TxtPago.Enabled = false;
+                TxtPago.Text = TxtImporte.Text;
+            }
+            else if (CmbTipoVenta.SelectedIndex == 1)
+            {
+                TxtPago.Text = "0.0";
+                TxtPago.Enabled = true;
             }
         }
     }

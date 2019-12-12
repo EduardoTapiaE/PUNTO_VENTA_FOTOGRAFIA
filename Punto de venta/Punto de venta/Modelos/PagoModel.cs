@@ -66,5 +66,6 @@ namespace Punto_de_venta.Modelos
                 throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para agregar nuevo pago\n"+ ex.Message);
             }
         }
+
     }
 }

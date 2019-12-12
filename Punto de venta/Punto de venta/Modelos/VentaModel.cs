@@ -75,5 +75,23 @@ namespace Punto_de_venta.Modelos
                 throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para agregar nueva venta\n" + ex.Message);
             }
         }
+
+        public string EditarSaldoVenta(Venta ventaeditada)
+        {
+            try
+            {
+                string _datosreturn = "", _query = "";
+                sqlcon.Open();
+                _query = "UPDATE venta SET saldo = @saldo  WHERE idventa = @idventa;";
+                _datosreturn = sqlcon.Execute(_query,new { saldo = ventaeditada.saldo, idventa = ventaeditada.idventa}).ToString();
+                sqlcon.Close();
+                return _datosreturn;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para agregar nueva venta\n" + ex.Message);
+            }
+        }
     }
 }
