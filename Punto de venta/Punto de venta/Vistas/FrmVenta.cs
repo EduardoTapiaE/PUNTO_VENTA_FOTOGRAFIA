@@ -16,6 +16,7 @@ namespace Punto_de_venta.Vistas
         CotizacionController ctlerCotizacion = new CotizacionController();
         ServicioController ctlerServicio = new ServicioController();
         VentaController ctlerVenta = new VentaController();
+        PagoController ctlerPago = new PagoController();
         List<Modelos.Servicio> serviciosDelPaquete = new List<Modelos.Servicio>();
         string idCotizacion = "";
         public FrmVenta(string idcotizacion)
@@ -38,6 +39,10 @@ namespace Punto_de_venta.Vistas
         {
             try
             {
+                //ASIGNA NUMERO DE CUENTA DE LA EMPRESA
+                PagoController.tarjeta.MiTarjeta = 7751610255668537;
+                PagoController.tarjeta.Numeros_Verificadores = 451;
+
                 LlenarCmbIdCotizacion();
                 CmbIdCotizacion.Select();
                 if (idCotizacion != "")
@@ -90,7 +95,9 @@ namespace Punto_de_venta.Vistas
             {
                 if (CmbTipoVenta.SelectedIndex == 0)
                 {
-                    MessageBox.Show("NO HAY TERMINAL COMPA JIJUESU");
+                    FrmTransferencia _form = new FrmTransferencia();
+                    _form.ShowDialog();
+                   // HacerTranferencia();
                 }
                 else if (CmbTipoVenta.SelectedIndex == 1)
                 {
@@ -120,6 +127,28 @@ namespace Punto_de_venta.Vistas
                 else 
                 {
                     MessageBox.Show("Y ESE FALLO VIEJON? NO SELECCIONO EL TIPO DE VENTA");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void HacerTranferencia()
+        {
+            try
+            {
+                Comprobante comprobante = await ctlerPago.Transferencia(7751610255668537, Convert.ToDecimal(TxtImporte.Text), 7751610255668537, 451);
+                if (comprobante.Id_Transaccion.ToString() != "0")
+                {
+                    MessageBox.Show("Id: " + comprobante.Id_Transaccion.ToString() +
+                    " Fecha: " + comprobante.Fecha.ToString() +
+                    " Mensaje: " + comprobante.Mensaje.ToString());
+                }
+                else
+                {
+                    throw new Exception("Erorr: No se pudo completar la transferencia\n"+ comprobante.Mensaje.ToString());
                 }
             }
             catch (Exception ex)
