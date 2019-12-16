@@ -254,12 +254,28 @@ namespace Punto_de_venta.Vistas
         #region TEXTBOX
         private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space) && (e.KeyChar != (char)Keys.Enter))
+            {
+                e.Handled = true;
+            }
             e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
         }
         private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space) && (e.KeyChar != (char)Keys.Enter))
+            {
+                e.Handled = true;
+            }
             e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
         }
         #endregion
+
+        private void CmbCotizacionesGuardadas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

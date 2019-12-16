@@ -36,7 +36,7 @@ namespace Punto_de_venta.Vistas
         {
             try
             {
-                Comprobante comprobante = await ctlerPago.Transferencia(7751610255668537, Convert.ToDecimal(montoPago), Convert.ToInt64(TxtTarjeta.Text), Convert.ToInt32(TxtNoVerificadores.Text));
+                Comprobante comprobante = await ctlerPago.Transferencia(7751610255668537, Convert.ToDecimal(montoPago), Convert.ToInt64(TxtTarjeta.Text), Convert.ToInt32(TxtNoVerificadores.Text), TxtFechaVencimiento.Text);
                 if (comprobante.Id_Transaccion.ToString() != "0")
                 {
                     MessageBox.Show("Id: " + comprobante.Id_Transaccion.ToString() +
@@ -70,6 +70,11 @@ namespace Punto_de_venta.Vistas
         private void FrmTransferencia_Load(object sender, EventArgs e)
         {
             TxtMonto.Text = montoPago;
+        }
+
+        private void TxtFechaVencimiento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
         }
     }
 }

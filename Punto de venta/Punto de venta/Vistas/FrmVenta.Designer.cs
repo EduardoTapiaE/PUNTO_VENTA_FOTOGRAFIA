@@ -205,6 +205,7 @@
             this.TxtPago.TabIndex = 49;
             this.TxtPago.Text = "0.0";
             this.TxtPago.TextChanged += new System.EventHandler(this.TxtPago_TextChanged);
+            this.TxtPago.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPago_KeyPress);
             // 
             // LblPago
             // 
@@ -243,8 +244,8 @@
             this.CmbTipoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.CmbTipoVenta.FormattingEnabled = true;
             this.CmbTipoVenta.Items.AddRange(new object[] {
-            "TRANSFERENCIA",
-            "CONTADO"});
+            "CREDITO",
+            "EFECTIVO"});
             this.CmbTipoVenta.Location = new System.Drawing.Point(538, 15);
             this.CmbTipoVenta.Name = "CmbTipoVenta";
             this.CmbTipoVenta.Size = new System.Drawing.Size(217, 24);
@@ -257,9 +258,9 @@
             this.LblTipoVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTipoVenta.Location = new System.Drawing.Point(428, 18);
             this.LblTipoVenta.Name = "LblTipoVenta";
-            this.LblTipoVenta.Size = new System.Drawing.Size(104, 16);
+            this.LblTipoVenta.Size = new System.Drawing.Size(102, 16);
             this.LblTipoVenta.TabIndex = 50;
-            this.LblTipoVenta.Text = "Tipo de venta";
+            this.LblTipoVenta.Text = "Tipo de pago";
             // 
             // label6
             // 
@@ -305,6 +306,7 @@
             this.TxtNombres.Name = "TxtNombres";
             this.TxtNombres.Size = new System.Drawing.Size(236, 22);
             this.TxtNombres.TabIndex = 0;
+            this.TxtNombres.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombres_KeyPress);
             // 
             // LblNombres
             // 
@@ -333,6 +335,7 @@
             this.TxtApellidos.Name = "TxtApellidos";
             this.TxtApellidos.Size = new System.Drawing.Size(273, 22);
             this.TxtApellidos.TabIndex = 31;
+            this.TxtApellidos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtApellidos_KeyPress);
             // 
             // LblApellidos
             // 
@@ -361,6 +364,7 @@
             this.TxtDomicilio.Name = "TxtDomicilio";
             this.TxtDomicilio.Size = new System.Drawing.Size(625, 22);
             this.TxtDomicilio.TabIndex = 33;
+            this.TxtDomicilio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDomicilio_KeyPress);
             // 
             // TxtTelefono
             // 
@@ -369,6 +373,7 @@
             this.TxtTelefono.Name = "TxtTelefono";
             this.TxtTelefono.Size = new System.Drawing.Size(236, 22);
             this.TxtTelefono.TabIndex = 35;
+            this.TxtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTelefono_KeyPress);
             // 
             // LblDomicilio
             // 

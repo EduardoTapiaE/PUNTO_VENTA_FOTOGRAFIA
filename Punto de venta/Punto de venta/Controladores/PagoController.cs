@@ -17,6 +17,7 @@ namespace Punto_de_venta.Controladores
         public int Numeros_Verificadores { get; set; }
         public Int64 Tarjeta_Destino { get; set; }
         public decimal Monto { get; set; }
+        public string Fecha_Vencimiento { get; set; }
     }
 
     class Comprobante
@@ -63,14 +64,15 @@ namespace Punto_de_venta.Controladores
         #region METODOS_API_BANCO
         public static Tarjeta tarjeta = new Tarjeta();
 
-        public async Task<Comprobante> Transferencia(Int64 tarjetaDestino, decimal monto, Int64 tarjetaOrigen, int noverificadores)
+        public async Task<Comprobante> Transferencia(Int64 tarjetaDestino, decimal monto, Int64 tarjetaOrigen, int noverificadores, string Fecha_Vencimiento)
         {
             DatosTransaccion datosTransaccion = new DatosTransaccion
             {
                 Tarjeta_Origen = tarjetaOrigen,
                 Numeros_Verificadores = noverificadores,
                 Tarjeta_Destino = tarjetaDestino,
-                Monto = monto
+                Monto = monto,
+                Fecha_Vencimiento = Fecha_Vencimiento
             };
 
             var baseUrl = "https://bancossoftwarecomplejo.azurewebsites.net";

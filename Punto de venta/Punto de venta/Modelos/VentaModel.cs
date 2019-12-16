@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Punto_de_venta.Controladores;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,7 +36,7 @@ namespace Punto_de_venta.Modelos
         {
             try
             {
-                sqlcon = new SqlConnection("Data Source=localhost;Initial Catalog=bdFotografia;User ID=sa;Password=kawama2310#");
+                sqlcon = new SqlConnection(ConfiguracionController.Conexion);
             }
             catch (Exception ex)
             {

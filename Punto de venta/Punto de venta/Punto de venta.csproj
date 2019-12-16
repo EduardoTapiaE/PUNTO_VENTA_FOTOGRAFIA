@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\ConfiguracionController.cs" />
     <Compile Include="Controladores\CotizacionController.cs" />
     <Compile Include="Controladores\PagoController.cs" />
     <Compile Include="Controladores\PaqueteController.cs" />

@@ -77,7 +77,12 @@ namespace Punto_de_venta.Vistas
         }
         private void BtnAdministrar_Click(object sender, EventArgs e)
         {
-            MostrarSubMenu(PnlSubMenuAdministrar);
+            string _tipousuario = "USUARIO";
+            if (_tipousuario == "ADMINISTRADOR")
+            {
+                MostrarSubMenu(PnlSubMenuAdministrar);
+            }
+           
         }
         private void BtnVenta_Click(object sender, EventArgs e)
         {

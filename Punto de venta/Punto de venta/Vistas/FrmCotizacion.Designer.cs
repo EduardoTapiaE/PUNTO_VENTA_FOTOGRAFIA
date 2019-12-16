@@ -30,6 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.LblMontoFinal = new System.Windows.Forms.Label();
+            this.LblIVA = new System.Windows.Forms.Label();
+            this.LblMontoInicial = new System.Windows.Forms.Label();
+            this.TxtIVA = new System.Windows.Forms.TextBox();
+            this.TxtMontoInicial = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.DgvServiciosDelPaquete = new System.Windows.Forms.DataGridView();
@@ -63,11 +68,6 @@
             this.CmbPaquetesPredefinidos = new System.Windows.Forms.ComboBox();
             this.LblNombrePaquetePredefinido = new System.Windows.Forms.Label();
             this.LblDatosDelUsuario = new System.Windows.Forms.Label();
-            this.TxtMontoInicial = new System.Windows.Forms.TextBox();
-            this.TxtIVA = new System.Windows.Forms.TextBox();
-            this.LblMontoInicial = new System.Windows.Forms.Label();
-            this.LblIVA = new System.Windows.Forms.Label();
-            this.LblMontoFinal = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -113,6 +113,56 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(875, 284);
             this.panel6.TabIndex = 27;
+            // 
+            // LblMontoFinal
+            // 
+            this.LblMontoFinal.AutoSize = true;
+            this.LblMontoFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMontoFinal.Location = new System.Drawing.Point(580, 202);
+            this.LblMontoFinal.Name = "LblMontoFinal";
+            this.LblMontoFinal.Size = new System.Drawing.Size(83, 16);
+            this.LblMontoFinal.TabIndex = 37;
+            this.LblMontoFinal.Text = "Monto final";
+            // 
+            // LblIVA
+            // 
+            this.LblIVA.AutoSize = true;
+            this.LblIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIVA.Location = new System.Drawing.Point(335, 202);
+            this.LblIVA.Name = "LblIVA";
+            this.LblIVA.Size = new System.Drawing.Size(65, 16);
+            this.LblIVA.TabIndex = 36;
+            this.LblIVA.Text = "IVA 16%";
+            // 
+            // LblMontoInicial
+            // 
+            this.LblMontoInicial.AutoSize = true;
+            this.LblMontoInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMontoInicial.Location = new System.Drawing.Point(59, 202);
+            this.LblMontoInicial.Name = "LblMontoInicial";
+            this.LblMontoInicial.Size = new System.Drawing.Size(95, 16);
+            this.LblMontoInicial.TabIndex = 35;
+            this.LblMontoInicial.Text = "Monto Inicial";
+            // 
+            // TxtIVA
+            // 
+            this.TxtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtIVA.Location = new System.Drawing.Point(422, 196);
+            this.TxtIVA.Name = "TxtIVA";
+            this.TxtIVA.ReadOnly = true;
+            this.TxtIVA.Size = new System.Drawing.Size(142, 26);
+            this.TxtIVA.TabIndex = 32;
+            this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // TxtMontoInicial
+            // 
+            this.TxtMontoInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMontoInicial.Location = new System.Drawing.Point(160, 196);
+            this.TxtMontoInicial.Name = "TxtMontoInicial";
+            this.TxtMontoInicial.ReadOnly = true;
+            this.TxtMontoInicial.Size = new System.Drawing.Size(142, 26);
+            this.TxtMontoInicial.TabIndex = 31;
+            this.TxtMontoInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label2
             // 
@@ -359,6 +409,7 @@
             this.CmbCotizacionesGuardadas.Name = "CmbCotizacionesGuardadas";
             this.CmbCotizacionesGuardadas.Size = new System.Drawing.Size(225, 24);
             this.CmbCotizacionesGuardadas.TabIndex = 24;
+            this.CmbCotizacionesGuardadas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CmbCotizacionesGuardadas_KeyPress);
             // 
             // LblCotizacionesGuardadas
             // 
@@ -494,56 +545,6 @@
             this.LblDatosDelUsuario.Size = new System.Drawing.Size(137, 15);
             this.LblDatosDelUsuario.TabIndex = 23;
             this.LblDatosDelUsuario.Text = "Paquete predefinido";
-            // 
-            // TxtMontoInicial
-            // 
-            this.TxtMontoInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoInicial.Location = new System.Drawing.Point(160, 196);
-            this.TxtMontoInicial.Name = "TxtMontoInicial";
-            this.TxtMontoInicial.ReadOnly = true;
-            this.TxtMontoInicial.Size = new System.Drawing.Size(142, 26);
-            this.TxtMontoInicial.TabIndex = 31;
-            this.TxtMontoInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // TxtIVA
-            // 
-            this.TxtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIVA.Location = new System.Drawing.Point(422, 196);
-            this.TxtIVA.Name = "TxtIVA";
-            this.TxtIVA.ReadOnly = true;
-            this.TxtIVA.Size = new System.Drawing.Size(142, 26);
-            this.TxtIVA.TabIndex = 32;
-            this.TxtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // LblMontoInicial
-            // 
-            this.LblMontoInicial.AutoSize = true;
-            this.LblMontoInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblMontoInicial.Location = new System.Drawing.Point(59, 202);
-            this.LblMontoInicial.Name = "LblMontoInicial";
-            this.LblMontoInicial.Size = new System.Drawing.Size(95, 16);
-            this.LblMontoInicial.TabIndex = 35;
-            this.LblMontoInicial.Text = "Monto Inicial";
-            // 
-            // LblIVA
-            // 
-            this.LblIVA.AutoSize = true;
-            this.LblIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblIVA.Location = new System.Drawing.Point(335, 202);
-            this.LblIVA.Name = "LblIVA";
-            this.LblIVA.Size = new System.Drawing.Size(65, 16);
-            this.LblIVA.TabIndex = 36;
-            this.LblIVA.Text = "IVA 16%";
-            // 
-            // LblMontoFinal
-            // 
-            this.LblMontoFinal.AutoSize = true;
-            this.LblMontoFinal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblMontoFinal.Location = new System.Drawing.Point(580, 202);
-            this.LblMontoFinal.Name = "LblMontoFinal";
-            this.LblMontoFinal.Size = new System.Drawing.Size(83, 16);
-            this.LblMontoFinal.TabIndex = 37;
-            this.LblMontoFinal.Text = "Monto final";
             // 
             // FrmCotizacion
             // 

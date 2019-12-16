@@ -174,12 +174,13 @@ namespace Punto_de_venta.Vistas
         {
             try
             {
-                Comprobante comprobante = await ctlerPago.Transferencia(7751610255668537, Convert.ToDecimal(TxtImporte.Text), 7751610255668537, 451);
+                Comprobante comprobante = await ctlerPago.Transferencia(7751610255668537, Convert.ToDecimal(TxtImporte.Text), 7751610255668537, 451,"");
                 if (comprobante.Id_Transaccion.ToString() != "0")
                 {
                     MessageBox.Show("Id: " + comprobante.Id_Transaccion.ToString() +
                     " Fecha: " + comprobante.Fecha.ToString() +
-                    " Mensaje: " + comprobante.Mensaje.ToString());
+                    " Mensaje: " + comprobante.Mensaje.ToString()+
+                    "");
                 }
                 else
                 {
@@ -232,6 +233,52 @@ namespace Punto_de_venta.Vistas
                 TxtPago.Text = "0.0";
                 TxtPago.Enabled = true;
             }
+        }
+
+        private void TxtPago_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' && TxtPago.Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && e.KeyChar != '.')
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void TxtNombres_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space) && (e.KeyChar != (char)Keys.Enter))
+            {
+                e.Handled = true;
+            }
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void TxtApellidos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space) && (e.KeyChar != (char)Keys.Enter))
+            {
+                e.Handled = true;
+            }
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
+        }
+
+        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Convert.ToChar(e.KeyChar.ToString().ToUpper());
         }
     }
 }
