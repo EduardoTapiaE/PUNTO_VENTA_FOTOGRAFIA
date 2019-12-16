@@ -11,7 +11,7 @@ namespace Punto_de_venta.Controladores
     {
         VentaModel modelVenta = new VentaModel();
 
-        public string AgregarVenta(string idcotizacion, string nombres, string apellidos, string domicilio, string telefono, string correo, string fevento, string hevento, string fentrega,string hentrega,string saldo,string sredes,string tventa)
+        public string AgregarVenta(string idcotizacion, string nombres, string apellidos, string domicilio, string telefono, string correo, string fevento, string hevento, string fentrega,string hentrega,string saldo,string sredes,string tventa,string Id_Transaccion,string Tarjeta_Origen,string Fecha_Transaccion)
         {
             string _datosreturn = "";
             Venta _venta = new Venta() 
@@ -28,7 +28,10 @@ namespace Punto_de_venta.Controladores
                 horaentrega = hentrega,
                 saldo = saldo,
                 subiraredes = sredes,
-                tipoventa = tventa
+                tipoventa = tventa,
+                Id_Transaccion = Id_Transaccion,
+                Tarjeta_Origen = Tarjeta_Origen,
+                Fecha_Transaccion = Fecha_Transaccion
             };
             _datosreturn = modelVenta.NuevaVenta(_venta);
             return _datosreturn;

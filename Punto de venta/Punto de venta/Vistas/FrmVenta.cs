@@ -21,7 +21,8 @@ namespace Punto_de_venta.Vistas
         string idCotizacion = "";
         double saldoinicial = 0;
         public bool transferenciaExitosa = false;
-
+        public Comprobante comprobanteTransaferencia = new Comprobante();
+        public string tarjetaOrigenTransferencia = "";
         public FrmVenta(string idcotizacion)
         {
             idCotizacion = idcotizacion;
@@ -98,13 +99,15 @@ namespace Punto_de_venta.Vistas
             try
             {
                 transferenciaExitosa = false;
+                comprobanteTransaferencia = new Comprobante();
+                tarjetaOrigenTransferencia = "";
                 if (CmbTipoVenta.SelectedIndex == 0)
                 {
                     FrmTransferencia _form = new FrmTransferencia(TxtImporte.Text);
                     _form.ShowDialog();
                     if (transferenciaExitosa)
                     {
-                        string _idventa = RealizarVenta();
+                        string _idventa = RealizarVenta("CREDITO");
                         string _idpago = GuardarPago(_idventa);
                         MessageBox.Show(string.Format("ID VENTA: {0}\nCLIENTE {1} {2}\nPAGO: {3}\nCAMBIO: {4}", _idventa,TxtNombres.Text,TxtApellidos.Text,TxtPago.Text,TxtCambio.Text));
                     }
@@ -115,7 +118,7 @@ namespace Punto_de_venta.Vistas
                 }
                 else if (CmbTipoVenta.SelectedIndex == 1)
                 {
-                    string _idventa = RealizarVenta();
+                    string _idventa = RealizarVenta("EFECTIVO");
                     string _idpago = GuardarPago(_idventa);
                 }
                 else 
@@ -146,12 +149,15 @@ namespace Punto_de_venta.Vistas
             return _idpago;
         }
 
-        private string RealizarVenta()
+        private string RealizarVenta(string tipo)
         {
             string _fevento = DtpFEvento.Value.ToString("yyyy-MM-dd"),
                           _hevento = DtpHEvento.Value.ToString("hh:mm:ss"),
                           _fentrega = DtpFEntrega.Value.ToString("yyyy-MM-dd"),
-                          _hentrega = DtpHEntrega.Value.ToString("hh:mm:ss");
+                          _hentrega = DtpHEntrega.Value.ToString("hh:mm:ss"),
+                          _idtransaccion = tipo == "CREDITO"?comprobanteTransaferencia.Id_Transaccion.ToString():"",
+                          _tarjetaorigen = tipo == "CREDITO" ?tarjetaOrigenTransferencia:"",
+                          _fechatransaccion = tipo == "CREDITO" ? comprobanteTransaferencia.Fecha.ToString():"";
             #region REALIZAR VENTA
             string _idventa = ctlerVenta.AgregarVenta(CmbIdCotizacion.Text,
                                                     TxtNombres.Text,
@@ -165,7 +171,10 @@ namespace Punto_de_venta.Vistas
                                                     _hentrega,
                                                     TxtImporte.Text,
                                                     "1",
-                                                    CmbTipoVenta.Text);
+                                                    CmbTipoVenta.Text,
+                                                    _idtransaccion,
+                                                    _tarjetaorigen,
+                                                    _fechatransaccion);
             #endregion
             return _idventa;
         }

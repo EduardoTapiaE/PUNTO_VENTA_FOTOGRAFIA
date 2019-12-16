@@ -26,6 +26,10 @@ namespace Punto_de_venta.Modelos
         public string saldo { get; set; }
         public string subiraredes { get; set; }
         public string tipoventa { get; set; }
+        public string Id_Transaccion { get; set; }
+        public string Tarjeta_Origen { get; set; }
+        public string Fecha_Transaccion { get; set; }
+
     }
 
     class VentaModel
@@ -50,7 +54,7 @@ namespace Punto_de_venta.Modelos
             {
                 string _datosreturn = "", _query = "";
                 sqlcon.Open();
-                _query = "INSERT INTO venta(idcotizacion,nombrescliente,apellidoscliente,domiciliocliente,telefonocliente,correo,fechaevento,horaevento,fechaentrega,horaentrega,saldo,subiraredes,tipoventa) VALUES (@idcotizacion,@nombrescliente,@apellidoscliente,@domiciliocliente,@telefonocliente,@correo,@fechaevento,@horaevento,@fechaentrega,@horaentrega,@saldo,@subiraredes,@tipoventa) SELECT SCOPE_IDENTITY() AS 'idventa';";
+                _query = "INSERT INTO venta(idcotizacion,nombrescliente,apellidoscliente,domiciliocliente,telefonocliente,correo,fechaevento,horaevento,fechaentrega,horaentrega,saldo,subiraredes,tipoventa,Id_Transaccion,Tarjeta_Origen,Fecha_Transaccion) VALUES (@idcotizacion,@nombrescliente,@apellidoscliente,@domiciliocliente,@telefonocliente,@correo,@fechaevento,@horaevento,@fechaentrega,@horaentrega,@saldo,@subiraredes,@tipoventa,@Id_Transaccion,@Tarjeta_Origen,@Fecha_Transaccion) SELECT SCOPE_IDENTITY() AS 'idventa';";
                 _datosreturn = sqlcon.Query<Venta>(_query, new
                 {
                     idcotizacion = ventanueva.idcotizacion,
@@ -65,7 +69,10 @@ namespace Punto_de_venta.Modelos
                     horaentrega = ventanueva.horaentrega,
                     saldo = ventanueva.saldo,
                     subiraredes = ventanueva.subiraredes,
-                    tipoventa = ventanueva.tipoventa
+                    tipoventa = ventanueva.tipoventa,
+                    Id_Transaccion = ventanueva.Id_Transaccion,
+                    Tarjeta_Origen = ventanueva.Tarjeta_Origen,
+                    Fecha_Transaccion = ventanueva.Fecha_Transaccion
                 }, commandType: CommandType.Text).ToList()[0].idventa;
                 sqlcon.Close();
                 return _datosreturn;

@@ -20,7 +20,7 @@ namespace Punto_de_venta.Controladores
         public string Fecha_Vencimiento { get; set; }
     }
 
-    class Comprobante
+    public class Comprobante
     {
         public int Id_Transaccion { get; set; }
         public DateTime Fecha { get; set; }

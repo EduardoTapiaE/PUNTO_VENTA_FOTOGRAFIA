@@ -43,11 +43,11 @@ namespace Punto_de_venta.Vistas
                     " Fecha: " + comprobante.Fecha.ToString() +
                     " Mensaje: " + comprobante.Mensaje.ToString());
                     Close();
-                    RegresarEstadoDeTransferenciaAFormVenta(true);
+                    RegresarEstadoDeTransferenciaAFormVenta(true, comprobante);
                 }
                 else
                 {
-                    RegresarEstadoDeTransferenciaAFormVenta(false);
+                    RegresarEstadoDeTransferenciaAFormVenta(false, comprobante);
                     throw new Exception("Erorr: No se pudo completar la transferencia\n" + comprobante.Mensaje.ToString());
                 }
             }
@@ -58,12 +58,14 @@ namespace Punto_de_venta.Vistas
             }
         }
 
-        private void RegresarEstadoDeTransferenciaAFormVenta(bool resultado)
+        private void RegresarEstadoDeTransferenciaAFormVenta(bool resultado, Comprobante comprobante)
         {
             FrmVenta _formularioabierto = Application.OpenForms.OfType<FrmVenta>().Where(pre => pre.Name == "FrmVenta").SingleOrDefault();
             if (_formularioabierto != null)
             {
                 _formularioabierto.transferenciaExitosa = resultado;
+                _formularioabierto.comprobanteTransaferencia = comprobante;
+                _formularioabierto.tarjetaOrigenTransferencia = TxtTarjeta.Text;
             }
         }
 
