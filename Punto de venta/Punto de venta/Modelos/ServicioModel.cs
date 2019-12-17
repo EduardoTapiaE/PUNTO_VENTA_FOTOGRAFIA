@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Punto_de_venta.Modelos
 {
-    class Servicio
+    public class Servicio
     {
         public string idservicio { get; set; }
         public string nombre { get; set; }

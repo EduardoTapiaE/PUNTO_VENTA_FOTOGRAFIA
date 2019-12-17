@@ -79,7 +79,16 @@ namespace Punto_de_venta.Vistas
                 if (TxtCotizacion.Text != "")
                 {
                     string _id = ctlerCotizacion.AgregarCotizacion(TxtCotizacion.Text,TxtNombres.Text,TxtApellidos.Text, serviciosDelPaquete);
-                    MessageBox.Show(string.Format("Id de cotizacion: {0}\nCotizacion realizada para el cleinte {1} {2}\nImporte: {3}",_id, TxtNombres.Text,TxtApellidos.Text,TxtCotizacion.Text));
+                   // MessageBox.Show(string.Format("Id de cotizacion: {0}\nCotizacion realizada para el cleinte {1} {2}\nImporte: {3}",_id, TxtNombres.Text,TxtApellidos.Text,TxtCotizacion.Text));
+                    FrmVisualizarReportes _form = new FrmVisualizarReportes("COTIZACION");
+                    _form.datosComprobanteCotizacion.idCotizacion = _id;
+                    _form.datosComprobanteCotizacion.cliente = string.Format("{0} {1}",TxtNombres.Text,TxtApellidos.Text);
+                    _form.datosComprobanteCotizacion.fecha = string.Format("HERMOSILLO,SONORA {0}", DateTime.Now.ToString("yyyy-MM-dd"));
+                    _form.datosComprobanteCotizacion.montoInicial = TxtMontoInicial.Text;
+                    _form.datosComprobanteCotizacion.iva = TxtIVA.Text;
+                    _form.datosComprobanteCotizacion.montoFinal = TxtCotizacion.Text;
+                    _form.datosComprobanteCotizacion.listaServicios = serviciosDelPaquete;
+                    _form.ShowDialog();
                     LimpiarCampos();
                     ValidarSiSeHaraLaVentaDeLaCotizacion(_id);
                 }
