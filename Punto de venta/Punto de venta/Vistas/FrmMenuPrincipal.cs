@@ -66,9 +66,13 @@ namespace Punto_de_venta.Vistas
         {
             try
             {
-                OcultarSubMenus();
-                AbrirFormulario(new FrmCotizacion());
-                LblTitulo.Text = "COTIZACION";
+                string _tipousuario = UsuarioController.tipoUsuario;
+                if (_tipousuario == "CAJERO") 
+                {
+                    OcultarSubMenus();
+                    AbrirFormulario(new FrmCotizacion());
+                    LblTitulo.Text = "COTIZACION";
+                }
             }
             catch (Exception ex)
             {
@@ -77,7 +81,7 @@ namespace Punto_de_venta.Vistas
         }
         private void BtnAdministrar_Click(object sender, EventArgs e)
         {
-            string _tipousuario = "USUARIO";
+            string _tipousuario = UsuarioController.tipoUsuario;
             if (_tipousuario == "ADMINISTRADOR")
             {
                 MostrarSubMenu(PnlSubMenuAdministrar);
@@ -124,5 +128,19 @@ namespace Punto_de_venta.Vistas
             }
         }
         #endregion
+
+        private void BtnVentas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OcultarSubMenus();
+                AbrirFormulario(new FrmVentasRealizadas());
+                LblTitulo.Text = "VENTAS";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

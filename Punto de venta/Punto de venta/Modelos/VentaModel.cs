@@ -29,6 +29,7 @@ namespace Punto_de_venta.Modelos
         public string Id_Transaccion { get; set; }
         public string Tarjeta_Origen { get; set; }
         public string Fecha_Transaccion { get; set; }
+        public string correoopinionclienteenviado { get; set; }
 
     }
 
@@ -54,7 +55,7 @@ namespace Punto_de_venta.Modelos
             {
                 string _datosreturn = "", _query = "";
                 sqlcon.Open();
-                _query = "INSERT INTO venta(idcotizacion,nombrescliente,apellidoscliente,domiciliocliente,telefonocliente,correo,fechaevento,horaevento,fechaentrega,horaentrega,saldo,subiraredes,tipoventa,Id_Transaccion,Tarjeta_Origen,Fecha_Transaccion) VALUES (@idcotizacion,@nombrescliente,@apellidoscliente,@domiciliocliente,@telefonocliente,@correo,@fechaevento,@horaevento,@fechaentrega,@horaentrega,@saldo,@subiraredes,@tipoventa,@Id_Transaccion,@Tarjeta_Origen,@Fecha_Transaccion) SELECT SCOPE_IDENTITY() AS 'idventa';";
+                _query = "INSERT INTO venta(idcotizacion,nombrescliente,apellidoscliente,domiciliocliente,telefonocliente,correo,fechaevento,horaevento,fechaentrega,horaentrega,saldo,subiraredes,tipoventa,Id_Transaccion,Tarjeta_Origen,Fecha_Transaccion,correoopinionclienteenviado) VALUES (@idcotizacion,@nombrescliente,@apellidoscliente,@domiciliocliente,@telefonocliente,@correo,@fechaevento,@horaevento,@fechaentrega,@horaentrega,@saldo,@subiraredes,@tipoventa,@Id_Transaccion,@Tarjeta_Origen,@Fecha_Transaccion,@correoopinionclienteenviado) SELECT SCOPE_IDENTITY() AS 'idventa';";
                 _datosreturn = sqlcon.Query<Venta>(_query, new
                 {
                     idcotizacion = ventanueva.idcotizacion,
@@ -72,7 +73,8 @@ namespace Punto_de_venta.Modelos
                     tipoventa = ventanueva.tipoventa,
                     Id_Transaccion = ventanueva.Id_Transaccion,
                     Tarjeta_Origen = ventanueva.Tarjeta_Origen,
-                    Fecha_Transaccion = ventanueva.Fecha_Transaccion
+                    Fecha_Transaccion = ventanueva.Fecha_Transaccion,
+                    correoopinionclienteenviado = ventanueva.correoopinionclienteenviado
                 }, commandType: CommandType.Text).ToList()[0].idventa;
                 sqlcon.Close();
                 return _datosreturn;
@@ -99,6 +101,41 @@ namespace Punto_de_venta.Modelos
             {
                 sqlcon.Close();
                 throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para agregar nueva venta\n" + ex.Message);
+            }
+        }
+
+        public List<Venta> DatosTablaVenta()
+        {
+            try
+            {
+                List<Venta> _datosreturn = new List<Venta>();
+                sqlcon.Open();
+                string query = "SELECT idventa,idcotizacion,nombrescliente,apellidoscliente,domiciliocliente,telefonocliente,correo,fechaevento,convert(varchar, horaevento, 8) AS horaevento,fechaentrega,convert(varchar, horaentrega, 8) AS horaentrega,saldo,subiraredes,tipoventa,Id_Transaccion,Tarjeta_Origen,Fecha_Transaccion,correoopinionclienteenviado  FROM venta;";
+                _datosreturn = sqlcon.Query<Venta>(query, commandType: CommandType.Text).ToList();
+                sqlcon.Close();
+                return _datosreturn;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para solicitar los datos de venta\n" + ex.Message);
+            }     
+        }
+        public List<Venta> DatosTablaVentaPorCorreoOpinionClienteEnviado(string enviado)
+        {
+            try
+            {
+                List<Venta> _datosreturn = new List<Venta>();
+                sqlcon.Open();
+                string query = "SELECT idventa,idcotizacion,nombrescliente,apellidoscliente,domiciliocliente,telefonocliente,correo,fechaevento,convert(varchar, horaevento, 8) AS horaevento,fechaentrega,convert(varchar, horaentrega, 8) AS horaentrega,saldo,subiraredes,tipoventa,Id_Transaccion,Tarjeta_Origen,Fecha_Transaccion,correoopinionclienteenviado  FROM venta WHERE correoopinionclienteenviado = @_enviado;";
+                _datosreturn = sqlcon.Query<Venta>(query,new { _enviado = enviado}, commandType: CommandType.Text).ToList();
+                sqlcon.Close();
+                return _datosreturn;
+            }
+            catch (Exception ex)
+            {
+                sqlcon.Close();
+                throw new Exception("Erro: Ocurrio un problema al ejecutar la sentencia sql para solicitar los datos de venta\n" + ex.Message);
             }
         }
     }

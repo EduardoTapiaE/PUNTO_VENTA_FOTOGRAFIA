@@ -9,7 +9,7 @@ namespace Punto_de_venta.Controladores
 {
     class UsuarioController
     {
-        public static string usuarioActual = "", idUsuarioActual = "";
+        public static string usuarioActual = "", idUsuarioActual = "", tipoUsuario = "";
         UsuarioModel modelUsuario = new UsuarioModel();
 
         public void AgregarUsuario(string nombres, string apellidos, string usuario, string contraseña, string tipodeusuario)
@@ -36,6 +36,7 @@ namespace Punto_de_venta.Controladores
             {
                 usuarioActual = _datosdeusuario[0].nombreusuario;
                 idUsuarioActual = _datosdeusuario[0].idusuario;
+                tipoUsuario = _datosdeusuario[0].tipo;
             }
             else
             {

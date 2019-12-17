@@ -41,6 +41,7 @@
             this.LblTitulo = new System.Windows.Forms.Label();
             this.LblUsuario = new System.Windows.Forms.Label();
             this.pnlAbrirFormularios = new System.Windows.Forms.Panel();
+            this.BtnVentas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.PnlSubMenuAdministrar.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -63,12 +64,13 @@
             // PnlSubMenuAdministrar
             // 
             this.PnlSubMenuAdministrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(129)))), ((int)(((byte)(88)))));
+            this.PnlSubMenuAdministrar.Controls.Add(this.BtnVentas);
             this.PnlSubMenuAdministrar.Controls.Add(this.BtnPaquetes);
             this.PnlSubMenuAdministrar.Controls.Add(this.BtnUsuarios);
             this.PnlSubMenuAdministrar.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlSubMenuAdministrar.Location = new System.Drawing.Point(0, 144);
             this.PnlSubMenuAdministrar.Name = "PnlSubMenuAdministrar";
-            this.PnlSubMenuAdministrar.Size = new System.Drawing.Size(171, 72);
+            this.PnlSubMenuAdministrar.Size = new System.Drawing.Size(171, 112);
             this.PnlSubMenuAdministrar.TabIndex = 19;
             this.PnlSubMenuAdministrar.Visible = false;
             // 
@@ -206,6 +208,23 @@
             this.pnlAbrirFormularios.Size = new System.Drawing.Size(875, 607);
             this.pnlAbrirFormularios.TabIndex = 2;
             // 
+            // BtnVentas
+            // 
+            this.BtnVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(129)))), ((int)(((byte)(88)))));
+            this.BtnVentas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnVentas.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnVentas.FlatAppearance.BorderSize = 0;
+            this.BtnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnVentas.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnVentas.Location = new System.Drawing.Point(0, 72);
+            this.BtnVentas.Name = "BtnVentas";
+            this.BtnVentas.Size = new System.Drawing.Size(171, 36);
+            this.BtnVentas.TabIndex = 20;
+            this.BtnVentas.Text = "Ventas";
+            this.BtnVentas.UseVisualStyleBackColor = false;
+            this.BtnVentas.Click += new System.EventHandler(this.BtnVentas_Click);
+            // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,5 +264,6 @@
         private System.Windows.Forms.Button BtnVenta;
         private System.Windows.Forms.Label LblUsuario;
         private System.Windows.Forms.Label LblTitulo;
+        private System.Windows.Forms.Button BtnVentas;
     }
 }

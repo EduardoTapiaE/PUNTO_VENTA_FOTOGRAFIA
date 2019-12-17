@@ -18,7 +18,7 @@ namespace Punto_de_venta.Modelos
         public string nombreusuario { get; set; }
         public string contraseña { get; set; }
         public string tipousuario { get; set; }
-        
+        public string tipo { get; set; }
     }
 
     class UsuarioModel
@@ -60,7 +60,7 @@ namespace Punto_de_venta.Modelos
                 List<Usuario> _datosreturn = new List<Usuario>();
                 
                 sqlcon.Open();
-                string query = string.Format("SELECT idusuario,nombres,apellidos,nombreusuario,contraseña,tipousuario FROM usuarios WHERE nombreusuario = '{0}' AND contraseña = '{1}';",usuario,contraseña);
+                string query = string.Format("SELECT u.idusuario,u.nombres,u.apellidos,u.nombreusuario,u.contraseña,u.tipousuario, tu.tipo FROM usuarios u, tiposdeusuarios tu WHERE u.tipousuario = tu.idtipousuario AND u.nombreusuario = '{0}' AND u.contraseña = '{1}';", usuario,contraseña);
                 _datosreturn = sqlcon.Query<Usuario>(query, commandType: CommandType.Text).ToList();
                 sqlcon.Close();
 
