@@ -132,6 +132,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Vistas\FrmCotizacion.resx">
       <DependentUpon>FrmCotizacion.cs</DependentUpon>
@@ -173,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icocamara.ico" />
+    <None Include="Resources\procesando.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

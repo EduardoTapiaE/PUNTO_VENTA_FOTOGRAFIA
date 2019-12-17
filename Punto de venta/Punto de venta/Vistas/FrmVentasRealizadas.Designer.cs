@@ -35,10 +35,13 @@
             this.LblVentasSinOpinion = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DgvVentasSinOpinion = new System.Windows.Forms.DataGridView();
+            this.BgwMandarEncuestas = new System.ComponentModel.BackgroundWorker();
+            this.PicProcesando = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DgvVentasRealizadas)).BeginInit();
             this.PnlVentasRealizadas.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvVentasSinOpinion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicProcesando)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnMandarEncuesta
@@ -100,6 +103,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.DgvVentasSinOpinion);
             this.panel1.Controls.Add(this.BtnMandarEncuesta);
+            this.panel1.Controls.Add(this.PicProcesando);
             this.panel1.Location = new System.Drawing.Point(40, 280);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(768, 276);
@@ -112,6 +116,25 @@
             this.DgvVentasSinOpinion.Name = "DgvVentasSinOpinion";
             this.DgvVentasSinOpinion.Size = new System.Drawing.Size(760, 220);
             this.DgvVentasSinOpinion.TabIndex = 49;
+            // 
+            // BgwMandarEncuestas
+            // 
+            this.BgwMandarEncuestas.WorkerReportsProgress = true;
+            this.BgwMandarEncuestas.WorkerSupportsCancellation = true;
+            this.BgwMandarEncuestas.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgwMandarEncuestas_DoWork);
+            this.BgwMandarEncuestas.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgwMandarEncuestas_RunWorkerCompleted);
+            // 
+            // PicProcesando
+            // 
+            this.PicProcesando.Enabled = false;
+            this.PicProcesando.Image = global::Punto_de_venta.Properties.Resources.procesando;
+            this.PicProcesando.Location = new System.Drawing.Point(548, 221);
+            this.PicProcesando.Name = "PicProcesando";
+            this.PicProcesando.Size = new System.Drawing.Size(90, 61);
+            this.PicProcesando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicProcesando.TabIndex = 50;
+            this.PicProcesando.TabStop = false;
+            this.PicProcesando.Visible = false;
             // 
             // FrmVentasRealizadas
             // 
@@ -132,6 +155,7 @@
             this.PnlVentasRealizadas.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvVentasSinOpinion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PicProcesando)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +169,7 @@
         private System.Windows.Forms.Label LblVentasSinOpinion;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView DgvVentasSinOpinion;
+        private System.ComponentModel.BackgroundWorker BgwMandarEncuestas;
+        private System.Windows.Forms.PictureBox PicProcesando;
     }
 }
